@@ -1,0 +1,114 @@
+'use client'; 
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../../lib/features/auth/authSlice';
+import { doc, setDoc, getDoc} from 'firebase/firestore';
+import { db } from '../../../firebase';
+
+
+export default function Admin() {
+    const user = useSelector(selectCurrentUser);
+    const [profile, setProfile] = useState({
+      realName: "",
+      nickName: "",
+      birthDate: "",
+      gender: "",
+      moodScore: "",
+    });
+
+    useEffect(() => {
+      const fetchProfile = async () => {
+        if (user) {
+          try {
+            const docRef = doc(db, "users", user.uid);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+              setProfile(docSnap.data() as {
+                realName: string;
+                nickName: string;
+                birthDate: string;
+                gender: string;
+                moodScore: string;
+              });
+              console.log(docSnap.data());
+            } else {
+              console.log("還沒有編輯基本資料");
+            }
+          } catch (error) {
+            console.error("fetch有問題:", error);
+          }
+        }
+      };
+    
+      fetchProfile();
+    }, [user]);
+    
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      setProfile({...profile,[e.target.name]: e.target.value,});
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      if (user) {
+        try {
+          await setDoc(doc(db, "users", user.uid), {
+            email: user.email,
+            ...profile,
+          });
+          alert("已更新資料");
+        } catch (error) {
+          console.error('Error saving data to Firestore:', error);
+          alert("請重新儲存");
+        }
+      }
+    };
+    return (
+      <div className="tracking-wide">
+        <div className="bg-gray-100 transition-colors duration-300">
+          <div className="container mx-auto p-4">
+            <div className="bg-white shadow rounded-lg p-6">
+              <h1 className="text-xl font-semibold mb-4 text-gray-900">基本資料</h1>
+              <p className="text-gray-600 mb-6">以下資料不會公開顯示</p>
+              <form onSubmit={handleSubmit}>
+                <div className="mb-4 flex items-center space-x-4">
+                  <div className="bg-sisal-100  border text-gray rounded-lg bg-white px-4 py-2 whitespace-nowrap">帳號</div>
+                    <input type="email" value={user?.email || ''} readOnly className="border p-2 pl-4 pfw-full rounded-lg bg-gray-100 text-gray-900"
+                    />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                  <input type="text" name="realName" value={profile.realName} onChange={handleChange} placeholder="真實姓名" className="border p-2 w-full rounded-lg focus:outline-none focus:border-sisal-300" />
+                  <input type="text" name="nickName" value={profile.nickName} onChange={handleChange} placeholder="暱稱-如何稱呼您" className="border p-2 w-full rounded-lg focus:outline-none focus:border-sisal-300" />
+                </div>
+  
+                <div className="mb-4">
+                    <input type="date" name="birthDate" value={profile.birthDate} onChange={handleChange} placeholder="出生年月日" className="border p-2 w-full rounded-lg focus:outline-none focus:border-sisal-300" />
+                </div>
+  
+                <div className="mb-4">
+                    <select name="gender" value={profile.gender} onChange={handleChange} className="border p-2 w-full rounded-lg focus:outline-none focus:border-sisal-300" required>
+                        <option value="" disabled>請選擇性別</option>
+                        <option value="male">生理男</option>
+                        <option value="female">生理女</option>
+                        <option value="none">暫不提性別資訊</option>
+                    </select>
+                </div>
+
+                <div className="mb-4">
+                  <input type="text" name="moodScore" value={profile.moodScore} onChange={handleChange} placeholder="目前心情分數" className="border p-2 w-full rounded-lg focus:outline-none focus:border-sisal-300" />
+                </div>
+                <div className="flex justify-end">
+                    <button type="submit" id="save" className="px-4 py-2 rounded bg-sisal-900 text-white hover:bg-sisal-400 focus:outline-none transition-colors">
+                    儲存
+                    </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    );
+  }
+  
