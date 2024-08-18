@@ -31,7 +31,7 @@ function Qa(){
   return (
     <div className="bg-sisal-400 min-h-screen flex items-start justify-center">
         <div className="py-12">
-        <div className="bg-white text-black border border-black w-[750px] h-[500px] rounded-full p-14">
+        <div className="bg-white text-black border border-black w-[750px] h-[500px] p-14">
             <div className="text-center text-2xl">Q : 如果我盡力去做的話，我總是能夠解決難題的。</div>
             <form onSubmit={handleSubmit} className="pt-5">
             <div className="option flex items-center pt-3 pl-[60px]">

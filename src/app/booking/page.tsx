@@ -1,25 +1,34 @@
 import Link from "next/link"
+import Image from 'next/image';
 
 export default function booking() {
     return (
-      <div className="min-h-screen">
-       <div className="m-5 text-center text-xl text-sisal-900"></div>
-        <div className="flex justify-center item-center text-lg bg-sisal-600 text-white ">
-        <Link href="/AIchat">
-          <div className="cursor-pointer text-center m-10 bg-sisal-400 text-white border border-black w-[200px] h-[150px] rounded-lg p-10">
-            AI聊聊 
-            <div>諮詢室</div>
-          </div>
-        </Link>
-        <Link href="/Startbook">
-          <div className="cursor-pointer text-center m-10 bg-sisal-400 text-white  border border-black w-[200px] h-[150px] rounded-lg p-10">
-            真人聊聊
-            <div>預約時間</div>
-          </div>
-        </Link>
+      <div className="h-full">
+        <div className="flex justify-center item-center text-lg bg-sisal-200 text-white ">
+          <Link href="/AIchat">
+            <div className="mt-40 mb-40 rounded overflow-hidden shadow-lg border-sisal-100 bg-sisal-700">
+                <Image src="/heart.png"  width={200} height={200} className="w-full ml-5 rounded-lg" alt="pic" />
+                <div className="px-6 py-4 flex justify-center">
+                  <div className="font-bold text-xl mb-2">AI 聊聊諮詢室</div>
+                </div>
+                <div className="px-4 pt-2 pb-10 flex justify-center">
+                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-base font-semibold text-gray-700 mr-2 mb-2">開始聊天</span>
+                </div>
+            </div>
+          </Link>
+
+          <Link href="/Startbook">
+              <div className="mt-40 mb-40max-w-sm rounded overflow-hidden shadow-lg m-5 border-sisal-100 bg-sisal-700">
+                    <Image src="/heart.png"  width={200} height={200} className="w-full ml-5 rounded-lg" alt="pic" />
+                    <div className="px-6 py-4 flex justify-center">
+                      <div className="font-bold text-xl mb-2">預約真人輔導</div>
+                    </div>
+                    <div className="px-4 pt-2 pb-10 flex justify-center">
+                      <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-base font-semibold text-gray-700 mr-2 mb-2">開始預約</span>
+                    </div>
+              </div>
+          </Link>
         </div>
-        
-        <div className="bg-sisal-200 min-h-screen"></div>
       </div>
     );
   }
