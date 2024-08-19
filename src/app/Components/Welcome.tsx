@@ -13,7 +13,7 @@ import Link from "next/link";
 export default function Welcome() {
     return (
       <div>
-        <div className="mx-auto max-w-7xl py-10 px-8">
+        <div className="mx-auto max-w-6xl py-10 px-8">
           <div className="relative isolate overflow-hidden bg-sisal-600 shadow-2xl rounded-3xl flex px-24 justify-between">
             <div className="tracking-wider mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
               <h2 className="text-white text-4xl font-bold">

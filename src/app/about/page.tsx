@@ -6,7 +6,7 @@ export default function Aboutpage() {
             <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
               <div className="tracking-wider title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">MoodingUp</div>
               <div className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">網站故事</div>
-              <div className="mb-8 leading-relaxed text-lg">不學年起頭時此的態拿響得我老去好青務反的；處在題的的情，下大是們海電苦業紀。原少能須能，保同亞因血華大我王、建果未哥上元日！效展用問位，區市要利離希河空識：不業了做路一家我原策政國到我老效特企他有總愛的阿不以名？兒推日低這一由著消也一在歌以。.</div>
+              <div className="text-justify mb-8 leading-relaxed text-lg">我們希望提供一個陪伴平台，幫助有需要的人可以隨時提出自己的需求，系統將依需求推薦 AI 陪伴員，並協助預約符合的輔導員，給予初步輔導，提供線上資源和陪伴切入點。</div>
               
             </div>
             <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">

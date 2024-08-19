@@ -3,9 +3,10 @@ import React from "react";
 import Image from 'next/image';
 import Link from "next/link";
 
-import { useSelector, useDispatch } from 'react-redux';
+
 import { signOut} from 'firebase/auth';
 import { auth } from '../../../firebase';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectCurrentUser, userLoggedOut, selectAuthLoading } from '../../../lib/features/auth/authSlice';
 
 const navigation = [
@@ -33,6 +34,14 @@ export default function MyHeader() {
     }
   };
 
+  const handleClick = (e:any) => {
+    if (!user) {
+      e.preventDefault(); 
+      alert('請先登入'); 
+    }
+  };
+
+
   return (
     <div className="bg-sisal-300 h-20 flex items-center justify-between">
       <Link href="/">
@@ -43,7 +52,8 @@ export default function MyHeader() {
 
       <div className="flex items-center justify-start grow h-20">
         {navigation.map((item) => (
-          <Link key={item.name} href={item.href} passHref>
+          <Link 
+          key={item.name} href={item.href} passHref>
             <div
               aria-current={item.current ? 'page' : undefined}
               className={classNames(
@@ -59,11 +69,13 @@ export default function MyHeader() {
         ))}
       </div> 
       <div className="flex items-center flex-none w-13 h-14 m-14 text-lg">
+      
       <Link href="/profile">
-        <div className="text-sisal-900 hover:bg-sisal-400 hover:text-white rounded-lg px-4 py-4 text-lg font-normal text-center cursor-pointer">
+        <div onClick={handleClick} className="text-sisal-900 hover:bg-sisal-400 hover:text-white rounded-lg px-4 py-4 text-lg font-normal text-center cursor-pointer">
           會員中心
         </div>
       </Link>
+
         {user ? (
           <button
             onClick={handleSignOut}

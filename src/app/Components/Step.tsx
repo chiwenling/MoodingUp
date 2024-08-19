@@ -1,7 +1,7 @@
 
 export default function Step(){
     return(
-        <ol className="mb-10 text-2xl font-medium tracking-wider flex items-center justify-center space-x-10 space-y-0 rtl:space-x-reverse text-sisal-800">
+        <ol className="h-36 mb-10 text-2xl font-medium tracking-wider flex items-center justify-center rtl:space-x-reverse text-sisal-800">
             <li className="flex items-center text-sisal-800 space-x-3">
                 <span className="flex items-center justify-center w-8 h-8 border border-sisal-800 rounded-full shrink-0">
                     1

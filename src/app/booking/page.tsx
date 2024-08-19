@@ -1,7 +1,21 @@
+"use client"
 import Link from "next/link"
 import Image from 'next/image';
+import React, { useEffect } from 'react';
+import { RootState } from "../../../lib/store"
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
-export default function booking() {
+export default function Booking() {
+  const router = useRouter();
+  const user = useSelector((state: RootState)=> state.auth.user);
+
+  useEffect(()=>{
+    if(!user){
+      router.push("/login");
+    }
+  },[user,router]);
+
     return (
       <div className="h-full">
         <div className="flex justify-center item-center text-lg bg-sisal-200 text-white ">
