@@ -30,7 +30,7 @@ export default function MyHeader() {
       await signOut(auth);
       dispatch(userLoggedOut());
     } catch (error) {
-      console.error("Error signing out:", error);
+      console.error("登出有問題", error);
     }
   };
 
@@ -53,18 +53,14 @@ export default function MyHeader() {
       <div className="flex items-center justify-start grow h-20">
         {navigation.map((item) => (
           <Link 
-          key={item.name} href={item.href} passHref>
-            <div
-              aria-current={item.current ? 'page' : undefined}
-              className={classNames(
-                item.current
+          key={item.name} href={item.href}>
+           <div className={classNames(item.current
                   ? 'bg-sisal-600 text-black'
                   : 'text-sisal-900 hover:bg-sisal-400 hover:text-white',
                 'rounded-lg px-4 py-4 text-lg font-normal text-center cursor-pointer',
               )}
-            >
-              {item.name}
-            </div>
+            >{item.name}
+          </div>
           </Link>
         ))}
       </div> 

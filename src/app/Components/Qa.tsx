@@ -9,11 +9,11 @@ function Qa(){
   const [score, setScore] = useState<number | null>(null);
 
   const options = [
-    { id: 'never', label: '完全不正確', value: 1 },
-    { id: 'seldom', label: '尚算正確', value: 2 },
-    { id: 'sometimes', label: '一半一半', value: 3 },
-    { id: 'usually', label: '多數正確', value: 4 },
-    { id: 'always', label: '完全正確', value: 5 }
+    { id: 'never', label: '完全不正確', value: 20 },
+    { id: 'seldom', label: '尚算正確', value: 40 },
+    { id: 'sometimes', label: '一半一半', value: 60 },
+    { id: 'usually', label: '多數正確', value: 80 },
+    { id: 'always', label: '完全正確', value: 90 }
   ];
 
   const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
