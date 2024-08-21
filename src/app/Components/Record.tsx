@@ -1,6 +1,6 @@
 import { db }  from "../../../firebase";
 import React, { useState,useEffect} from 'react';
-import { collection, getDocs, query, where, doc, deleteDoc} from "firebase/firestore";
+import { collection, getDocs, query, where, doc, deleteDoc, orderBy, onSnapshot, QuerySnapshot} from "firebase/firestore";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../../lib/store"
 
@@ -8,46 +8,45 @@ import { RootState } from "../../../lib/store"
 export default function Record(){
     const user = useSelector((state: RootState) => state.auth.user); 
     const [recordData, setRecordData] = useState<{ 
-        id: string;
+        id:string;
         date: string; 
         time: string; 
         teacher: string; 
         topic: string }[]>([]);
     
-    // 刪除
+    // 刪除預約資料
     async function deleteRecord(id:string){
             try {
-              const docRef = doc(db, "reservation", id);
-              await deleteDoc(docRef);
-              console.log("已刪除");
-              setRecordData(function(records){
-                return records.filter((record) => record.id !== id);
-              });
-              console.log("成功刪除");
+              await deleteDoc(doc(db, "reservation", id));
+              alert("已刪除預約資料");
             } catch (error) {
               console.error("刪除錯誤", error);
             }
           };
     
-    // 抓資料庫資料
+    // 抓預約資料
     async function load(email: string) {
         try {
-            const q = query(collection(db, "reservation"), where("email", "==",email));
-            const querySnapshot = await getDocs(q);
-            console.log("資料庫結果", querySnapshot);
-
-            const records = querySnapshot.docs.map(doc => {
-                const data = doc.data();
-                return {
-                    date: data.date,
-                    time: data.time,
-                    teacher: data.teacher,
-                    topic: data.topic,
-                    id:data.id
-                };
+            const q = query((collection(db, "reservation")), where("email", "==",email),orderBy("date","desc"));
+            // const querySnapshot = await getDocs(q);
+            // console.log("資料庫結果", querySnapshot);
+            const unsubscribe = onSnapshot(q,(querySnapshot)=>{
+                const reservation =[];
+                const records = querySnapshot.docs.map(doc => {
+                    const data = doc.data();
+                    console.log("取得的資料",data)
+                    return {
+                        id: doc.id,
+                        date: data.date,
+                        time: data.time,
+                        teacher: data.teacher,
+                        topic: data.topic,
+                    };
+                });
+                console.log("收到records資料", records);
+                setRecordData(records);
             });
-            console.log("收到records資料", records);
-            setRecordData(records);
+            
         } catch (error) {
             console.error("有點問題", error);
         }

@@ -38,7 +38,6 @@ export default function Bookform(){
               user:user.uid,
               email:user.email
               });
-              console.log("id:", docRef.id)
               alert("預約成功");
               router.push("/profile");
 
