@@ -135,18 +135,3 @@ export default function Bookform(){
 
 
 
-
-// const handleSubmit = async (e:any) => {
-//   e.preventDefault();
-
-//   if (user && user.email) {
-//   try {
-//       await addDoc(collection(db, 'reservation'), {formData});
-//       alert('預約成功，請至會員中心查看');
-//       router.push("/profile");
-//   } catch (error) {
-//       console.error('Error saving data to Firestore:', error);
-//       alert('請重新預約');
-//   }
-//   }
-// };

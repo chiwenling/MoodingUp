@@ -1,9 +1,9 @@
-import ChatComponent from "../Components/Chat";
+import ChatComponent from "../Components/ChatComponent ";
 
 export default function AIchat() {
     return (
       <div className="min-h-screen">
-       <ChatComponent />
+       <ChatComponent />       
       </div>
     );
   }
