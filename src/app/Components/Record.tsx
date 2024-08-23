@@ -34,7 +34,6 @@ export default function Record(){
                 const reservation =[];
                 const records = querySnapshot.docs.map(doc => {
                     const data = doc.data();
-                    console.log("取得的資料",data)
                     return {
                         id: doc.id,
                         date: data.date,
@@ -43,9 +42,9 @@ export default function Record(){
                         topic: data.topic,
                     };
                 });
-                console.log("收到records資料", records);
                 setRecordData(records);
             });
+            console.log("目前讀到的資訊",unsubscribe);
             
         } catch (error) {
             console.error("有點問題", error);
