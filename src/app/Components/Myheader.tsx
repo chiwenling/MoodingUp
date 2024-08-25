@@ -2,8 +2,7 @@
 import React from "react";
 import Image from 'next/image';
 import Link from "next/link";
-
-
+import { useEffect } from 'react';
 import { signOut} from 'firebase/auth';
 import { auth } from '../../../firebase';
 import { useSelector, useDispatch } from 'react-redux';
@@ -41,6 +40,10 @@ export default function MyHeader() {
     }
   };
 
+  if (loading) {
+    return null;
+  }
+
 
   return (
     <div className="bg-sisal-300 h-20 flex items-center justify-between">
@@ -72,7 +75,7 @@ export default function MyHeader() {
         </div>
       </Link>
 
-        {user ? (
+        {user||loading? (
           <button
             onClick={handleSignOut}
             className="text-sisal-900 px-4 py-4 rounded-lg hover:bg-sisal-500 hover:text-white"

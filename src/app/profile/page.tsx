@@ -3,19 +3,23 @@
 import Admin from "../Components/Admin";
 import Record from "../Components/Record";
 import React, { useEffect } from 'react';
-import { RootState } from "../../../lib/store"
+import { selectCurrentUser } from '../../../lib/features/auth/authSlice';
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 
 export default function Profile() {
   const router = useRouter();
-  const user = useSelector((state: RootState)=> state.auth.user);
-
+  const user = useSelector(selectCurrentUser);
+  console.log("看一下有沒有user",user)
+  
   useEffect(()=>{
-    if(!user){
-      router.push("/login");
-    }
-  },[user,router]);
+    const timeoutId = setTimeout(()=>{
+      if(!user){
+        router.push("/login");
+      }
+    },1000);
+    return()=>clearTimeout(timeoutId);
+  },[user,router]); 
 
   return (
     <div>     

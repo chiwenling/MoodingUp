@@ -11,9 +11,12 @@ export default function Booking() {
   const user = useSelector((state: RootState)=> state.auth.user);
 
   useEffect(()=>{
-    if(!user){
-      router.push("/login");
-    }
+    const timeoutId =setTimeout(()=>{
+      if(!user){
+        router.push("/login");
+      }
+    },1000);
+    return()=>clearTimeout(timeoutId);
   },[user,router]);
 
     return (

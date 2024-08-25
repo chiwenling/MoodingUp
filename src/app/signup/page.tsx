@@ -1,13 +1,11 @@
 // 註冊頁
 "use client";
-
-import { FormEvent, useState } from "react";
+import Image from 'next/image';
 import Link from "next/link";
+import React,{ FormEvent, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../../firebase";
 import { useRouter } from "next/navigation";
-import React from 'react';
-import Image from 'next/image';
 
 
 export default function Register() {
@@ -40,7 +38,6 @@ export default function Register() {
           ? errorMessages[firebaseErrorCode]
           : "發生了一個錯誤";
       setError(friendlyMessage);
-      // setError((e as Error).message);
     }
   }
 
@@ -71,31 +68,16 @@ export default function Register() {
                   <label htmlFor="email" className=" text-base font-medium text-gray-700 tracking-wide">
                     帳號
                   </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    id="email"
-                    className="w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-sisal-300"
-                    placeholder="請輸入您的信箱"
-                    required
-                  />
+                  <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} id="email" 
+                         className="w-full text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-sisal-300" placeholder="請輸入您的信箱" required/>
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="password" className="mb-5  text-base font-medium text-gray-700 tracking-wide">
                     密碼
                   </label>
-                  <input 
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={(e)=>setPassword(e.target.value)}
-                    id="password"
-                    className="w-full content-center text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-sisal-300"
-                    placeholder="請輸入至少6位數字"
-                    required
-                  />
+                  <input type="password" name="password" value={password} onChange={(e)=>setPassword(e.target.value)} id="password"
+                         className="w-full content-center text-base px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-sisal-300"
+                         placeholder="請輸入至少6位數字" required/>
                 </div>
                 <div>
                   <label
@@ -105,15 +87,9 @@ export default function Register() {
                     再次輸入密碼
                   </label>
                   <input
-                    type="password"
-                    name="confirm-password"
-                    value={confirmation}
-                    onChange={(e) => setConfirmation(e.target.value)}
-                    id="confirm-password"
-                    placeholder="••••••••"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm: text-base rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    required
-                  />
+                    type="password" name="confirm-password" value={confirmation} onChange={(e) => setConfirmation(e.target.value)}
+                    id="confirm-password" placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm: text-base rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
                 </div>
   
                 {/* 輸入錯誤 */}
