@@ -1,37 +1,91 @@
 // 要讀取目前有的歷史紀錄
 
-
-
-
+"use client";
+import {collection, query, where, doc, orderBy, onSnapshot,deleteDoc} from "firebase/firestore";
+import { useSelector } from "react-redux";
+import {db} from "../../../firebase";
+import { useEffect, useState } from "react";
+import { selectCurrentUser } from "../../../lib/features/auth/authSlice";
+import Image from "next/image";
 
 export default function ChatHistory(){
+    //讀取目前登入狀態
+    const user = useSelector(selectCurrentUser);
+    const [chatHistory, setChatHistory]= useState<{
+        id:string;
+        message:string;
+        time:string;
+        keypoint:string;
+    }[]>([]);
+
+    
+    useEffect(() => {
+        if (user && user.email) {
+            getHistory(user.email);
+        }
+    }, [user]);
+
+    // 刪除重點紀錄
+    async function deleteRecord(id:string){
+        try {
+          await deleteDoc(doc(db, "chatHistory", id));
+          alert("已刪除重點小卡資料");
+        } catch (error) {
+          console.error("刪除錯誤", error);
+        }
+      };
+
+    // 讀取重點紀錄
+    async function getHistory(email:string){
+        const q = query(collection(db, "chatHistory"), where("email", "==", email), orderBy("time", "desc"));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const history = querySnapshot.docs.map(doc => {
+            const data = doc.data();
+            console.log("目前讀到的資料",data);
+
+            return {
+                id: doc.id,
+                message: data.message[1].content,
+                keypoint:data.message[data.message.length-1].content,
+                time: data.time
+            };
+        });
+        console.log("目前讀到的history",history);
+        setChatHistory(history);
+    });
+    }
+
+
     return(
-        <div className="w-1/4 bg-white border border-sisal-500">
-                      <div className="p-4 border-b border-gray-300 flex justify-between items-center bg-sisal-600 text-white">
-                          <div className="text-lg font-normal">過往諮詢紀錄</div>
-                          <div className="relative">
-                              <button id="menuButton" className="focus:outline-none">
-                                  <svg className="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
-                                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
-                                  </svg>
-                              </button>
-                          </div>
-                      </div>
+        <div className="m-5 tracking-wider w-1/4 bg-white rounded-lg border border-sisal-500">
+            <div className="p-4 border-b border-gray-300 flex justify-between items-center bg-sisal-600 text-white rounded-lg">
+                <div className="text-lg font-normal pl-4">重點紀錄收集卡</div>
+            </div>
+        
+            <div className="m-4 overflow-y-auto h-screen p-2 mb-9 pb-20">
+            {chatHistory.length >0 ?(
+                chatHistory.map((history) => (
                     
-                      <div className="overflow-y-auto h-screen p-3 mb-9 pb-20">
-                          <div className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md">
-                              <div className="flex-1">
-                                  <div className="text-lg font-semibold">2024-04-01</div>
-                                  <div className="text-gray-600">聊天歷史紀錄</div>
-                              </div>
-                          </div>
-                          <div className="flex items-center mb-4 cursor-pointer hover:bg-gray-100 p-2 rounded-md">
-                              <div className="flex-1">
-                                  <div className="text-lg font-semibold">2024-04-01</div>
-                                  <div className="text-gray-600">聊天歷史紀錄</div>
-                              </div>
-                          </div>     
-                      </div>  
-                  </div>
-    )
+                        <div key={history.id} >
+                            <div className="m-6 group h-44 bg-transparent rounded-md perspective-1000">
+                                <div className="relative w-full h-full text-center transition-transform duration-400 transform-style-3d group-hover:rotate-y-180">
+                                    <div className="absolute w-full h-full bg-sisal-200 text-black rounded-lg">
+                                        <div className="pt-10 text-lg font-semibold">{history.time}</div>
+                                        <div className="pt-4 text-gray-600">{history.message}</div>
+                                    </div>
+                                    <div className="absolute w-full h-full bg-sisal-500 text-white rotate-y-180 backface-hidden p-6 text-justify rounded-lg">
+                                        {history.keypoint}
+                                        <div className="flex justify-end items-end m-3">
+                                            <Image src="/trashcan.png" alt="logo" width={40} height={40} className="p-1 bg-white rounded-lg cursor-pointer" onClick={()=>deleteRecord(history.id)} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                )))
+                :( <div>沒有談話記錄</div>
+            )}  
+            </div>  
+        </div>
+    );
 }

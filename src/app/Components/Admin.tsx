@@ -30,7 +30,6 @@ export default function Admin() {
                 gender: string;
                 moodScore: string;
               });
-              console.log(docSnap.data());
             } else {
               console.log("還沒有編輯基本資料");
             }

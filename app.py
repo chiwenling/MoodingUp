@@ -23,7 +23,7 @@ class MessageRequest(BaseModel):
 
 system_message = {
     "role": "system",
-    "content": "你是溫柔的輔導老師，可以吸收各種負面東西，並且鼓勵來談話的人給方向和建議，請先大大的鼓勵再給予意見。"
+    "content": "你是溫柔的輔導老師，請鼓勵來談話的人給方向和建議，請先大大的鼓勵再給予意見，每次談話不超過20個字。"
 }
 
 

@@ -1,8 +1,9 @@
 import { db }  from "../../../firebase";
 import React, { useState,useEffect} from 'react';
-import { collection, getDocs, query, where, doc, deleteDoc, orderBy, onSnapshot, QuerySnapshot} from "firebase/firestore";
+import { collection, query, where, doc, deleteDoc, orderBy, onSnapshot} from "firebase/firestore";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../../lib/store"
+
 
 
 export default function Record(){
@@ -13,7 +14,13 @@ export default function Record(){
         time: string; 
         teacher: string; 
         topic: string }[]>([]);
-    
+
+    useEffect(() => {
+        if (user && user.email) {
+            load(user.email);
+        }
+    }, [user]);
+
     // 刪除預約資料
     async function deleteRecord(id:string){
             try {
@@ -28,8 +35,6 @@ export default function Record(){
     async function load(email: string) {
         try {
             const q = query((collection(db, "reservation")), where("email", "==",email),orderBy("date","desc"));
-            // const querySnapshot = await getDocs(q);
-            // console.log("資料庫結果", querySnapshot);
             const unsubscribe = onSnapshot(q,(querySnapshot)=>{
                 const reservation =[];
                 const records = querySnapshot.docs.map(doc => {
@@ -44,21 +49,13 @@ export default function Record(){
                 });
                 setRecordData(records);
             });
-            console.log("目前讀到的資訊",unsubscribe);
+            
             
         } catch (error) {
             console.error("有點問題", error);
         }
     }
-
-    useEffect(() => {
-        if (user && user.email) {
-            load(user.email);
-            console.log("User email:", user.email);
-        }
-    }, [user]);
-
-
+    
     return(
         <div className="tracking-wide container mx-auto p-4 mb-10">
             <div className="relative overflow-x-auto shadow-md ">

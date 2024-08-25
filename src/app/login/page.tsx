@@ -7,13 +7,16 @@ import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from "../../../firebase";
-import GoogleAuth from "../Components/GoogleAuth";
+import GoogleAuth from "../Components/GoogleAuth"
+import { useDispatch } from 'react-redux';
+import { userLoggedIn } from '../../../lib/features/auth/authSlice';
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const dispatch = useDispatch();
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -22,7 +25,11 @@ export default function Login() {
     try {
       const credential = await signInWithEmailAndPassword(getAuth(app), email, password);
       const idToken = await credential.user.getIdToken();
-      
+      const user={
+        uid: credential.user.uid,
+        email:credential.user.email
+      }
+      dispatch(userLoggedIn(user));
       await fetch("/api/login", {
         headers: {
           Authorization: `Bearer ${idToken}`,
