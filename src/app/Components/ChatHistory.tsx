@@ -42,7 +42,7 @@ export default function ChatHistory(){
         const history = querySnapshot.docs.map(doc => {
             const data = doc.data();
             console.log("目前讀到的資料",data);
-
+            
             return {
                 id: doc.id,
                 message: data.message[1].content,

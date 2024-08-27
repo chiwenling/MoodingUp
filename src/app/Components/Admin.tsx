@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../../lib/features/auth/authSlice';
 import { doc, setDoc, getDoc} from 'firebase/firestore';
 import { db } from '../../../firebase';
+import Link from "next/link";
 
 
 export default function Admin() {
@@ -15,6 +16,7 @@ export default function Admin() {
       nickName: "",
       birthDate: "",
       gender: "",
+      phone:"",
       moodScore: "",
     });
     
@@ -27,13 +29,14 @@ export default function Admin() {
 
             if(docSnap.exists()) {
               const isAdmin = docSnap.data().isAdmin;
-              console.log("是不是管理員",isAdmin);
+              console.log("是不是輔導員",isAdmin);
               setisAdmin(isAdmin);
               setProfile(docSnap.data() as {
                 realName: string;
                 nickName: string;
                 birthDate: string;
                 gender: string;
+                phone:string;
                 moodScore: string;
               });
               setLoading(false);
@@ -52,7 +55,7 @@ export default function Admin() {
     
     // 新的資料
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      setProfile({...profile,[e.target.name]: e.target.value,});
+      setProfile({...profile,[e.target.name]: e.target.value});
     };
 
     // 儲存更新資料
@@ -78,17 +81,27 @@ export default function Admin() {
         <div className="bg-gray-100 transition-colors duration-300">
           <div className="container mx-auto p-4">
             <div className="bg-white shadow rounded-lg p-6">
-              <h1 className="text-xl font-semibold mb-4 text-gray-900">基本資料</h1>
+              <div className="flex items-center">
+                <div className="text-xl font-semibold mb-4 text-gray-900">基本資料</div>
+                <Link href="/mentorProfile">
+                {isAdmin?<div className="flex justify-start mb-6 ml-4">
+                      <button type="submit" id="save" className="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-400 focus:outline-none transition-colors">
+                      編輯輔導簡介
+                      </button>
+                  </div>:null}
+                </Link>
+                </div>
+
               <p className="text-gray-600 mb-6">以下資料不會公開顯示</p>
               <form onSubmit={handleSubmit}>
                 <div className="mb-4 flex items-center space-x-4 ">
                   <div className="bg-sisal-100  border text-gray rounded-lg px-12  py-2 whitespace-nowrap ">身份</div>
-                    <input type="email" value={loading?"":(isAdmin? "管理員":"會員")} readOnly className="border p-2 pl-4 w-full rounded-lg bg-gray-100 text-gray-900"
+                    <input type="email" value={loading?"":(isAdmin? "輔導員":"會員")} readOnly className="border p-2 pl-4 w-full rounded-lg bg-gray-100 text-gray-900  focus:outline-none focus:border-sisal-300"
                     />
                 </div>
                 <div className="mb-4 flex items-center space-x-4 ">
                   <div className="bg-sisal-100  border text-gray rounded-lg px-12  py-2 whitespace-nowrap ">帳號</div>
-                    <input type="email" value={user?.email || ''} readOnly className="border p-2 pl-4 w-full rounded-lg bg-gray-100 text-gray-900"
+                    <input type="email" value={user?.email || ''} readOnly className="border p-2 pl-4 w-full rounded-lg bg-gray-100 text-gray-900 focus:outline-none focus:border-sisal-300"
                     />
                 </div>
 
@@ -119,9 +132,15 @@ export default function Admin() {
                 </div>
 
                 <div className="flex items-center space-x-4 mb-4">
+                    <div className="bg-sisal-100  border text-gray rounded-lg px-12 py-2 whitespace-nowrap">電話</div>
+                    <input type="number" name="phone" value={profile.phone} onChange={handleChange} placeholder="聯絡電話" className="border p-2 w-full rounded-lg focus:outline-none focus:border-sisal-300" />
+                </div>
+
+                <div className="flex items-center space-x-4 mb-4">
                   <div className="bg-sisal-100  border text-gray rounded-lg px-4 py-2 whitespace-nowrap">目前心情分數</div>
                   <input type="text" name="moodScore" value={profile.moodScore} onChange={handleChange} placeholder="心情分數" className="border p-2 w-full rounded-lg focus:outline-none focus:border-sisal-300" />
                 </div>
+
                 <div className="flex justify-end">
                     <button type="submit" id="save" className="px-4 py-2 rounded bg-sisal-900 text-white hover:bg-sisal-400 focus:outline-none transition-colors">
                     儲存

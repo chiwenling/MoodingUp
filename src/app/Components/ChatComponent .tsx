@@ -98,7 +98,6 @@ export default function ChatComponent() {
       <Link href="/">
         <div className="flex justify-end">
           <button className="m-5 tracking-wider text-lg bg-sisal-900 text-white px-4 py-2 rounded-full ml-3 hover:bg-sisal-600"
-          onClick={saveHistory}
           >回到首頁 ➤</button>
         </div>
       </Link>
