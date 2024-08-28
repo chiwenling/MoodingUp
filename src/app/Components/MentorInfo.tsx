@@ -19,7 +19,6 @@ export default function MentorInfo(){
         availableTime: "",
       });
 
-    
 
     // 專業部分
     const [skills, setSkills] = useState(['']);
@@ -114,8 +113,7 @@ export default function MentorInfo(){
                   <input type="text" name="name" value={mentorProfile.name} onChange={handleChange} placeholder="名稱" className="border p-2 w-full rounded-lg focus:outline-none focus:border-sisal-300" />
                 </div>
 
-                {/* 使用者可以自己增加 */}
-                
+                {/* 使用者可以自己增加 */}             
                 <div className="mt-6">
                     {skills.map((skill , index) => (
                         <div key={mentorProfile.id} className="mb-4 flex items-center space-x-4">
@@ -129,7 +127,7 @@ export default function MentorInfo(){
                     ))}
                     <div className='flex justify-center mb-4'>
                         <button type="button" onClick={addSkill} className="justify-end bg-sisal-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none">
-                        ＋ 新增專業
+                         新增專業
                         </button>
                     </div>
                 </div>
