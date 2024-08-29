@@ -40,12 +40,11 @@ class AiTalk:
         self.messages.append({"role": "user", "content": prompt})
         
         try:
-            print(f"Sending request to OpenAI with messages: {self.messages}")
             response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=self.messages
             )
-            reply = response['choices'][0]['message']['content']
+            reply = response.choices[0].message['content'] 
             self.messages.append({"role": "assistant", "content": reply})
             return reply
         except Exception as e:
