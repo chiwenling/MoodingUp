@@ -190,7 +190,7 @@ const SetTime = () => {
                   <div key={periodIndex} className="flex items-center justify-start m-1">
                     <div>{periodpreOpenTime.period}</div>
                     <button onClick={() => handleRemovePeriod(index, periodIndex)} className="bg-red-500 text-white m-1 px-2 py-1 rounded-lg hover:bg-red-600">
-                      删除
+                      刪除
                     </button>
                   </div>
                 ))}
