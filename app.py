@@ -16,14 +16,13 @@ app.add_middleware(
 
 load_dotenv(dotenv_path=".env.local")
 openai.api_key = os.getenv("CHATGPT_API_TOKEN")
-print(f"Token found: {openai.api_key}")
 
 class MessageRequest(BaseModel):
     prompt: str
 
 system_message = {
     "role": "system",
-    "content": "你是溫柔的輔導老師，請鼓勵來談話的人給方向和建議，請先大大的鼓勵再給予意見，每次談話不超過20個字。"
+    "content": "你是溫柔的輔導老師，請用一次單元型模型，來鼓勵與你談話的人，給他們方向和建議，每次談話不超過20個字。"
 }
 
 

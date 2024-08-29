@@ -24,9 +24,6 @@ export default function Team(){
                                 人際關係
                                 </div>
                             </div>
-                            <div className="font-bold text-red-700">
-                                可預約時段：週一、週三
-                            </div>
                             <p className="font-normal text-gray-500">
                                 專長協助個人職涯規劃、發掘潛力、提供指導，提升職場競爭力
                             </p>
@@ -45,9 +42,6 @@ export default function Team(){
                                 <div className="rounded-full bg-sisal-200 px-4 py-2">
                                 人際關係
                                 </div>
-                            </div>
-                            <div className="font-bold text-red-700">
-                                可預約時段：週一、週三
                             </div>
                             <p className="font-normal text-gray-500">
                                 專長協助個人職涯規劃、發掘潛力、提供指導，提升職場競爭力
@@ -68,9 +62,6 @@ export default function Team(){
                                 人際關係
                                 </div>
                             </div>
-                            <div className="font-bold text-red-700">
-                                可預約時段：週一、週三
-                            </div>
                             <p className="font-normal text-gray-500">
                                 專長協助個人職涯規劃、發掘潛力、提供指導，提升職場競爭力
                             </p>
@@ -89,9 +80,6 @@ export default function Team(){
                                 <div className="rounded-full bg-sisal-200 px-4 py-2">
                                 人際關係
                                 </div>
-                            </div>
-                            <div className="font-bold text-red-700">
-                                可預約時段：週一、週三
                             </div>
                             <p className="font-normal text-gray-500">
                                 專長協助個人職涯規劃、發掘潛力、提供指導，提升職場競爭力
