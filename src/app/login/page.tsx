@@ -27,7 +27,8 @@ export default function Login() {
       const idToken = await credential.user.getIdToken();
       const user={
         uid: credential.user.uid,
-        email:credential.user.email
+        email:credential.user.email,
+        isAdmin:false
       }
       dispatch(userLoggedIn(user));
       await fetch("/api/login", {
