@@ -40,17 +40,14 @@ class AiTalk:
         self.messages.append({"role": "user", "content": prompt})
         
         try:
-            print(f"request OpenAI 的訊息: {self.messages}")
+            print(f"Sending request to OpenAI with messages: {self.messages}")
             response = openai.ChatCompletion.create(
                 model="gpt-3.5-turbo",
                 messages=self.messages
             )
-            reply = response.choices[0].message['content']
+            reply = response['choices'][0]['message']['content']
             self.messages.append({"role": "assistant", "content": reply})
             return reply
-        except openai.error.OpenAIError as e:
-            print(f"OpenAI API error: {str(e)}")
-            raise HTTPException(status_code=500, detail="OpenAI API request failed")
         except Exception as e:
             print(f"Unexpected error: {str(e)}")
             raise HTTPException(status_code=500, detail="Internal Server Error")
