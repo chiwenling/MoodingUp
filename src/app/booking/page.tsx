@@ -2,14 +2,18 @@
 import Link from "next/link"
 import Image from 'next/image';
 import React, { useEffect } from 'react';
-import { RootState } from "../../../lib/store"
+// import { RootState } from "../../../lib/store"
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import { selectCurrentUser, selectAuthLoading } from '../../../lib/features/auth/authSlice';
 
 export default function Booking() {
   const router = useRouter();
-  const user = useSelector((state: RootState)=> state.auth.user);
-
+  // const user = useSelector((state: RootState)=> state.auth.user);
+  const user = useSelector(selectCurrentUser);
+  console.log("看一下有沒有user",user);
+  const loading = useSelector(selectAuthLoading);
+   
   useEffect(()=>{
     const timeoutId =setTimeout(()=>{
       if(!user){
@@ -18,6 +22,10 @@ export default function Booking() {
     },1000);
     return()=>clearTimeout(timeoutId);
   },[user,router]);
+
+  if (loading) {
+    return null;
+  }
 
     return (
       <div className="h-full">

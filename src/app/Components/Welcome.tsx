@@ -1,16 +1,20 @@
+'use client'; 
 import React from "react";
 import Image from 'next/image';
 import Link from "next/link";
-
-// text-base。
-// sm:：text-lg。
-// md:：text-xl。
-// lg:：text-2xl。
-// xl:：text-3xl。
-
-
+import { useSelector} from 'react-redux';
+import { selectCurrentUser} from '../../../lib/features/auth/authSlice';
 
 export default function Welcome() {
+    const user = useSelector(selectCurrentUser);
+    const handleClick = (e: any, href: string) => {
+    
+    if ((!user && (href === '/booking'))) {
+      e.preventDefault();
+      alert('請先登入');
+    }
+  };
+
     return (
       <div>
         <div className="mx-auto max-w-6xl py-10 px-8">
@@ -28,7 +32,7 @@ export default function Welcome() {
                   立即小測
                 </div>
                 </Link>
-                <Link href="/booking">
+                <Link href="/booking" onClick={(e) => handleClick(e,"/booking")}>
                 <div className="cursor-pointer rounded-md bg-white px-3 py-2 text-m font-normal text-gray-900 shadow-lg hover:bg-sisal-900 hover:text-sisal-200">
                   立即預約
                 </div>

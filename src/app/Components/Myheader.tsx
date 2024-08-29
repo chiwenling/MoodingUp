@@ -2,7 +2,6 @@
 import React from "react";
 import Image from 'next/image';
 import Link from "next/link";
-import { useEffect } from 'react';
 import { signOut} from 'firebase/auth';
 import { auth } from '../../../firebase';
 import { useSelector, useDispatch } from 'react-redux';
@@ -33,17 +32,16 @@ export default function MyHeader() {
     }
   };
 
-  const handleClick = (e:any) => {
-    if (!user) {
-      e.preventDefault(); 
-      alert('請先登入'); 
+  const handleClick = (e: any, href: string) => {
+    if ((!user && (href === '/booking' || href === '/profile'))) {
+      e.preventDefault();
+      alert('請先登入');
     }
   };
 
   // if (loading) {
   //   return null;
   // }
-
 
   return (
     <div className="bg-sisal-300 h-20 flex items-center justify-between">
@@ -55,9 +53,9 @@ export default function MyHeader() {
 
       <div className="flex items-center justify-start grow h-20">
         {navigation.map((item) => (
-          <Link 
-          key={item.name} href={item.href}>
-           <div className={classNames(item.current
+          <Link key={item.name} href={item.href}>
+            <div onClick={(e) => handleClick(e, item.href)}
+            className={classNames(item.current
                   ? 'bg-sisal-600 text-black'
                   : 'text-sisal-900 hover:bg-sisal-400 hover:text-white',
                 'rounded-lg px-4 py-4 text-lg font-normal text-center cursor-pointer',
@@ -70,7 +68,7 @@ export default function MyHeader() {
       <div className="flex items-center flex-none w-13 h-14 m-14 text-lg">
       
       <Link href="/profile">
-        <div onClick={handleClick} className="text-sisal-900 hover:bg-sisal-400 hover:text-white rounded-lg px-4 py-4 text-lg font-normal text-center cursor-pointer">
+        <div onClick={(e) => handleClick(e,"/profile")} className="text-sisal-900 hover:bg-sisal-400 hover:text-white rounded-lg px-4 py-4 text-lg font-normal text-center cursor-pointer">
           會員中心
         </div>
       </Link>
