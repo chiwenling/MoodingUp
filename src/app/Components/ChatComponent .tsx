@@ -67,7 +67,7 @@ export default function ChatComponent() {
   };
 
   try {
-      const response = await fetch("http://44.232.185.193:8000/chat/", {
+      const response = await fetch("https://44.232.185.193:8000/chat/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
