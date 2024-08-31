@@ -46,16 +46,13 @@ class AiTalk:
             reply = response["choices"][0]["message"]["content"]
             self.messages.append({"role": "assistant", "content": reply})
             return reply
-        except openai.error.OpenAIError as e:
-            print(f"OpenAI API error: {e}")
-            raise HTTPException(status_code=500, detail="request failed")
         except Exception as e:
             print(f"Unexpected error: {e}")
             raise HTTPException(status_code=500, detail="Internal Server Error")
 
 ai_talk = AiTalk()
 
-@app.post("/chat/")
+@app.post("/chat")
 async def chat(request: MessageRequest):
     try:
         print(f"Received message: {request.prompt}")
