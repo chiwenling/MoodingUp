@@ -6,6 +6,8 @@ import Footer from "./Components/Footer";
 
 import StoreProvider from './StoreProvider';
 import AuthListener from "./Components/AuthListener";
+import { QuizProvider } from "./Components/QuizContext";
+import { ScoreProvider } from "./Components/ScoreContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +27,13 @@ export default function RootLayout({
       <body className={inter.className}>
       <StoreProvider>
         <AuthListener />
-        <MyHeader />
-        {children}
-        <Footer />
+          <QuizProvider>
+            <ScoreProvider>
+            <MyHeader />
+            {children}
+            <Footer />
+            </ScoreProvider>
+          </QuizProvider>
       </StoreProvider>
       </body>
     </html>

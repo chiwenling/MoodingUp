@@ -15,7 +15,7 @@ function AuthListener() {
     dispatch(setLoading(true));
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        dispatch(userLoggedIn({ uid: user.uid, email: user.email,isAdmin: false  }));
+        dispatch(userLoggedIn({ uid: user.uid, email: user.email, isAdmin: false  }));
       } else {
         dispatch(userLoggedOut());
       }

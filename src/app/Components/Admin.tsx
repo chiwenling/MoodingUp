@@ -11,6 +11,7 @@ export default function Admin() {
     const user = useSelector(selectCurrentUser);
     const [isAdmin, setisAdmin] =useState(false);
     const [loading, setLoading] = useState(true); 
+    const [score, setScore] = useState<number | ''>('');
     const [profile, setProfile] = useState({
       realName: "",
       nickName: "",
@@ -53,6 +54,13 @@ export default function Admin() {
       fetchProfile();
     }, [user]);
     
+    useEffect(() => {
+      const savedScore = localStorage.getItem("score");
+      if (savedScore) {
+        setScore(Number(savedScore)); 
+      }
+    }, []);
+
     // 新的資料
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
       setProfile({...profile,[e.target.name]: e.target.value});
@@ -74,7 +82,7 @@ export default function Admin() {
         }
       }
     };
-    
+
 
     return (
       <div className="tracking-wide">
@@ -137,8 +145,8 @@ export default function Admin() {
                 </div>
 
                 <div className="flex items-center space-x-4 mb-4">
-                  <div className="bg-sisal-100  border text-gray rounded-lg px-4 py-2 whitespace-nowrap">目前心情分數</div>
-                  <input type="text" name="moodScore" value={profile.moodScore} onChange={handleChange} placeholder="心情分數" className="border p-2 w-full rounded-lg focus:outline-none focus:border-sisal-300" />
+                  <div className="bg-sisal-100  border text-gray rounded-lg px-8 py-2 whitespace-nowrap">心情檢測</div>
+                  <input type="text" name="moodScore" value={score} onChange={handleChange} placeholder="心情分數" readOnly className="bg-gray-100 border p-2 w-full rounded-lg focus:outline-none focus:border-sisal-300" />
                 </div>
 
                 <div className="flex justify-end">

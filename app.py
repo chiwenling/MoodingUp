@@ -52,6 +52,10 @@ class AiTalk:
 
 ai_talk = AiTalk()
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
 @app.post("/chat")
 async def chat(request: MessageRequest):
     try:

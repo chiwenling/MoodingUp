@@ -4,8 +4,6 @@ import { collection, query, where, doc, deleteDoc, orderBy, onSnapshot} from "fi
 import { useSelector } from 'react-redux';
 import { RootState } from "../../../lib/store"
 
-
-
 export default function Record(){
     const user = useSelector((state: RootState) => state.auth.user); 
     const [recordData, setRecordData] = useState<{ 

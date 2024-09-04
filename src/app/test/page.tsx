@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { RootState } from "../../../lib/store"
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
-import Qa from "../Components/Qa"
+import Quiz from '../Components/Quiz';
 
 export default function Home() {
   const router = useRouter();
@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <div>
-      <Qa />
+      <Quiz />
     </div>
     
   );

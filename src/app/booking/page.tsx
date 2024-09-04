@@ -1,16 +1,16 @@
 "use client"
-import Link from "next/link"
 import Image from 'next/image';
 import React, { useEffect } from 'react';
-// import { RootState } from "../../../lib/store"
+import { RootState } from "../../../lib/store"
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
-import { selectCurrentUser, selectAuthLoading } from '../../../lib/features/auth/authSlice';
+import { selectAuthLoading } from '../../../lib/features/auth/authSlice';
+import Scorecard from '../Components/ScoreCard'; 
+import Button from '../Components/Button';
 
 export default function Booking() {
   const router = useRouter();
-  // const user = useSelector((state: RootState)=> state.auth.user);
-  const user = useSelector(selectCurrentUser);
+  const user = useSelector((state: RootState)=> state.auth.user);
   console.log("看一下有沒有user",user);
   const loading = useSelector(selectAuthLoading);
    
@@ -19,43 +19,48 @@ export default function Booking() {
       if(!user){
         router.push("/login");
       }
-    },1000);
+    },2000);
     return()=>clearTimeout(timeoutId);
   },[user,router]);
 
   if (loading) {
     return null;
   }
-
+  
     return (
-      <div className="h-full">
-        <div className="flex justify-center item-center text-lg bg-sisal-200 text-white ">
-          <Link href="/AIchat">
-            <div className="mt-40 mb-40 rounded overflow-hidden shadow-lg border-sisal-100 bg-sisal-700">
-                <Image src="/heart.png"  width={200} height={200} className="w-full ml-5 rounded-lg" alt="pic" />
-                <div className="px-6 py-4 flex justify-center">
-                  <div className="font-bold text-xl mb-2">AI 聊聊諮詢室</div>
-                </div>
-                <div className="px-4 pt-2 pb-10 flex justify-center">
-                  <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-base font-semibold text-gray-700 mr-2 mb-2">開始聊天</span>
-                </div>
-            </div>
-          </Link>
-
-          <Link href="/Startbook">
-              <div className="mt-40 mb-40max-w-sm rounded overflow-hidden shadow-lg m-5 border-sisal-100 bg-sisal-700">
-                    <Image src="/heart.png"  width={200} height={200} className="w-full ml-5 rounded-lg" alt="pic" />
-                    <div className="px-6 py-4 flex justify-center">
-                      <div className="font-bold text-xl mb-2">預約真人輔導</div>
-                    </div>
-                    <div className="px-4 pt-2 pb-10 flex justify-center">
-                      <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-base font-semibold text-gray-700 mr-2 mb-2">開始預約</span>
-                    </div>
+      <div className="h-full tracking-wide">
+        <Scorecard  />
+        <div className="flex justify-center item-center text-lg text-white ">
+          <div className="mt-8 mb-8 mr-20 max-w-sm bg-gradient-to-b from-orange-200 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
+              <div className="w-[150px] h-[150px] mx-auto mt-5 overflow-hidden rounded-full shadow-lg">
+                <Image src="/a01.gif" width={150} height={150} className="bg-sisal-100 w-full h-full object-cover animate-pulse" alt="AI聊天圖片" />
               </div>
-          </Link>
+
+              <div className="p-10 text-center ">
+                <h2 className="mb-3 text-2xl font-medium tracking-wider text-black">AI 聊聊諮詢室</h2>
+                <Button href="/AIchat"text="開始聊天" bg="bg-orange-400"/>
+                <p className="text-justify mb-4 text-base font-base text-gray-700 transition-all duration-300 hover:text-gray-900">
+                  透過聊天也許你能獲得一些解答，無論你現在正在面對什麼問題，AI 將提供你最立即的需要、最立即的陪伴！
+                </p>               
+              </div>
+          </div>
+
+          <div className="mt-8 mb-8 ml-10 max-w-sm bg-gradient-to-b from-pink-300 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
+              <div className="w-[150px] h-[150px] mx-auto mt-5 overflow-hidden rounded-full shadow-lg">
+                <Image src="/soft.gif" width={100} height={100} className="bg-sisal-100 w-full h-full object-cover animate-pulse" alt="AI聊天圖片" />
+              </div>
+              <div className="p-10 text-center ">
+                <h2 className="mb-3 text-2xl font-medium tracking-wider text-black">預約真人輔導</h2>
+                <Button href="/Startbook"text="立即預約" bg="bg-purple-400"/>
+                
+                <p className="text-justify mb-4 text-base font-base text-gray-700 transition-all duration-300 hover:text-gray-900">
+                  針對想討論的主題，隨時預約 1 對 1 輔導，輔導員將聆聽你的故事、分享建議，幫助你找到方向，讓我們一起走過關卡！
+                </p>
+               
+              </div>
+          </div>
         </div>
       </div>
     );
   }
-  
   

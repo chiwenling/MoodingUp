@@ -4,14 +4,16 @@ import Image from 'next/image';
 import Link from "next/link";
 import { useSelector} from 'react-redux';
 import { selectCurrentUser} from '../../../lib/features/auth/authSlice';
+import { useRouter } from "next/navigation";
 
 export default function Welcome() {
     const user = useSelector(selectCurrentUser);
+    const router = useRouter();
     const handleClick = (e: any, href: string) => {
     
-    if ((!user && (href === '/booking'))) {
+    if (!user && ((href === "/booking")||(href === "/test"))) {
       e.preventDefault();
-      alert('請先登入');
+      router.push("/login");
     }
   };
 
@@ -27,7 +29,7 @@ export default function Welcome() {
                 職涯、關係、心情，疑難雜症慢慢聊！
               </p>
               <div className="mt-10 mx-10 flex items-center justify-start gap-x-6 ">
-                <Link href="/test">
+                <Link href="/test" onClick={(e) => handleClick(e,"/test")}>
                 <div className="cursor-pointer rounded-md bg-white px-3 py-2 text-m font-normal text-gray-900 shadow-lg hover:bg-sisal-900 hover:text-sisal-200">
                   立即小測
                 </div>
