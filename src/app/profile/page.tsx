@@ -2,6 +2,7 @@
 
 import Admin from "../Components/Admin";
 import Record from "../Components/Record";
+import ApplyForAdmin from "../Components/ApplyForAdmin";
 import React, { useEffect } from 'react';
 import { selectCurrentUser } from '../../../lib/features/auth/authSlice';
 import { useRouter } from "next/navigation";
@@ -22,7 +23,8 @@ export default function Profile() {
   },[user,router]); 
 
   return (
-    <div>     
+    <div>
+      <ApplyForAdmin /> 
       <Admin />
       <Record />
     </div> 

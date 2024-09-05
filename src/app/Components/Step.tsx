@@ -1,25 +1,36 @@
-
-export default function Step(){
-    return(
-        <ol className="h-36 mb-10 text-2xl font-medium tracking-wider flex items-center justify-center rtl:space-x-reverse text-sisal-800">
-            <li className="flex items-center text-sisal-800 space-x-3">
-                <span className="flex items-center justify-center w-8 h-8 border border-sisal-800 rounded-full shrink-0">
-                    1
-                </span>
-                <span>心情小測獲得分數</span>
-            </li>
-            <li className="flex items-center space-x-3">
-                <span className="flex items-center justify-center w-8 h-8 border border-sisal-800 rounded-full shrink-0">
-                    2
-                </span>
-                <span>預約談話</span>
-            </li>
-            <li className="flex items-center space-x-3">
-                <span className="text-2xl flex items-center justify-center w-8 h-8 border border-sisal-800 rounded-full shrink-0">
-                    3
-                </span>
-                <span>開始聊天</span>
-            </li>
-        </ol>
-    )
-}
+export default function Step() {
+    return (
+      <ol className="p-10 pb-0 bg-sisal-100 h-auto text-xl font-semibold tracking-wider flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-8 text-sisal-800">
+         <li className="flex items-center space-x-4">
+          <span className="text-gray-700">操作步驟</span>
+        </li>
+        
+        <li className="pr-10 flex items-center space-x-4">
+          <span className=" flex items-center justify-center w-10 h-10 bg-gradient-to-r from-sisal-400 to-sisal-600 text-white rounded-full shadow-md">
+            1
+          </span>
+          <span className="text-gray-700">心情檢測</span>
+        </li>
+        <li className="pr-10 flex items-center space-x-4">
+          <span className="flex items-center justify-center w-10 h-10 bg-gradient-to-r from-sisal-400 to-sisal-600 text-white rounded-full shadow-md">
+            2
+          </span>
+          <span className="text-gray-700">獲得分數</span>
+        </li>
+        <li className="pr-10 flex items-center space-x-4">
+          <span className="flex items-center justify-center w-10 h-10 bg-gradient-to-r from-sisal-400 to-sisal-600 text-white rounded-full shadow-md">
+            3
+          </span>
+          <span className="text-gray-700">談話選擇</span>
+        </li>
+        <li className="pr-10 flex items-center space-x-4">
+          <span className="flex items-center justify-center w-10 h-10 bg-gradient-to-r from-sisal-400 to-sisal-600 text-white rounded-full shadow-md">
+            4
+          </span>
+          <span className="text-gray-700">進行對話</span>
+        </li>
+        
+      </ol>
+    );
+  }
+  

@@ -48,20 +48,16 @@ return(
   <div className="bg-no-repeat bg-cover bg-center relative">
     <div className="absolute bg-gradient-to-t from-gray-500 to-yellow-400 opacity-80 inset-0 z-0"></div>
     <div className="flex mx-auto p-10 justify-center"> 
-      {/* 會員登入頁左圖 */}
-      <div className="flex-col flex self-center p-14 z-10">
-        <div className="self-start hidden lg:flex flex-col text-white">
-          <Image src="/sofa.jpg" alt="會員登入頁面" width={500} height={1000} className="mb-3 mr-20 rounded-2xl"/>
-          <p className="italic pr-3">「 There‘s a lid for every pot. 」— Joy </p>
-        </div>
+      <div className="p-14 z-10 hidden lg:flex lg:flex-col text-white">
+        <Image src="/sofa.jpg" alt="會員登入頁面" width={500} height={1000} className="mb-3 mr-20 rounded-2xl"/>
+        <p className="italic pr-3">「 There‘s a lid for every pot. 」— Joy </p>
       </div>
+      
 
-      <form onSubmit={handleSubmit} className="mt-12 z-10" action="#">
-        <div className="flex justify-center self-center">
-          <div className="relative h-[520px] w-[400px] p-10 bg-white mx-3 rounded-2xl">
-            <div className="mb-3">
-              <h3 className="font-semibold text-2xl text-gray-600">會員登入</h3>
-            </div>
+      <form onSubmit={handleSubmit} className="mt-12 z-1">
+        <div className="flex justify-center self-center " >
+          <div className="relative h-[520px] w-[400px] p-10 bg-white mx-4 rounded-2xl ">
+            <h3 className="font-semibold text-2xl text-gray-600 mb-2">會員登入</h3>
             <GoogleAuth />
             <div className="relative space-y-4">
               <div className="space-y-2 ">
@@ -95,7 +91,6 @@ return(
                 />
               </div>
 
-              {/* 輸入錯誤 */}
               {error && (
               <div className=" bg-red-100 border border-red-400 text-red-700 rounded relative break-words p-1" role="alert">
                 <span className="block inline">{(error)}</span>

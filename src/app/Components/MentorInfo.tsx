@@ -10,6 +10,9 @@ import { db } from '../../../firebase';
 export default function MentorInfo(){
     const user = useSelector(selectCurrentUser);
     const [loading, setLoading] = useState(true); 
+    const [message, setMessage] = useState("");
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [googleMeetLink, setGoogleMeetLink] = useState(""); 
     const [mentorProfile, setmentorProfile] = useState({
         id:"",
         name: "",
@@ -17,6 +20,7 @@ export default function MentorInfo(){
         education:"",
         introduction: "",
         availableTime: "",
+        googleMeetLink:"",
       });
 
 
@@ -54,6 +58,7 @@ export default function MentorInfo(){
               id:user.uid,
               email: user.email,
               skill:skills,
+              googleMeetLink: googleMeetLink,
             });
             alert("已更新資料");
           } catch (error) {
@@ -81,10 +86,11 @@ export default function MentorInfo(){
                 education:string,
                 introduction: string,
                 availableTime: string,
+                googleMeetLink: string,
             });
             setLoading(false);
             setSkills(docSnap.data().skill);
-            // 初始化狀態會讓頁面讀取到目前已存的資訊
+            
             } else {
             console.log("還沒有編輯基本資料");
             }
@@ -95,10 +101,7 @@ export default function MentorInfo(){
         }
     };fetchmentorProfile();
       }, [user]);
-    
-    if(loading){
-        return null;
-    }
+  
 
     return(
         <div className="transition-colors duration-300">
@@ -111,9 +114,7 @@ export default function MentorInfo(){
                 <div className="mb-4 flex items-center space-x-4">
                   <div className="bg-sisal-100  border text-gray rounded-lg px-12 py-2 whitespace-nowrap">姓名</div>
                   <input type="text" name="name" value={mentorProfile.name} onChange={handleChange} placeholder="名稱" className="border p-2 w-full rounded-lg focus:outline-none focus:border-sisal-300" />
-                </div>
-
-                {/* 使用者可以自己增加 */}             
+                </div>     
                 <div className="mt-6">
                     {skills.map((skill , index) => (
                         <div key={mentorProfile.id} className="mb-4 flex items-center space-x-4">
@@ -126,7 +127,7 @@ export default function MentorInfo(){
                         </div>
                     ))}
                     <div className='flex justify-center mb-4'>
-                        <button type="button" onClick={addSkill} className="justify-end bg-sisal-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none">
+                        <button type="button" onClick={addSkill} className="justify-end bg-sisal-500 text-white px-4 py-2 rounded-lg hover:bg-sisal-600 focus:outline-none">
                          新增專業
                         </button>
                     </div>
@@ -143,10 +144,22 @@ export default function MentorInfo(){
                   <div className="bg-sisal-100  border text-gray rounded-lg px-12 py-2 whitespace-nowrap">簡歷</div>
                   <input type="text" name="introduction" value={mentorProfile.introduction} onChange={handleChange} placeholder="簡介與特殊經驗，限50字" className="border p-2 w-full h-[100px] rounded-lg focus:outline-none focus:border-sisal-300" />
                 </div>
+                <div className=" text-lg font-normal mb-4 text-yellow-900">＊請放心，google連結不公開顯示，僅提供給預約者，請放心輸入您專屬的GoogleMeet連結</div>
+                  {message && <p className="text-green-500">{message}</p>}
+                  
+                    <div className="mb-4 flex items-center space-x-4">
+                      <div className="bg-sisal-100  border text-gray rounded-lg px-6 py-2 whitespace-nowrap">聊天室連結</div>
+                      <input type="text" value={mentorProfile.googleMeetLink}
+                        onChange={handleChange}
+                        className="border border-gray-300 p-2 rounded-lg w-full focus:outline-none focus:border-sisal-300"
+                        placeholder="輸入您專屬的 Google Meet 連結"
+                        required />
+                    </div>
+            
                 <div className="flex justify-end">
                     <Link href="/profile">
                         <button type="button" id="return" className="px-4 py-2 m-1 rounded bg-sisal-500 text-white hover:bg-sisal-400 focus:outline-none transition-colors">
-                        返回
+                        返回基本資料
                         </button>
                     </Link>
                     <button type="submit" id="save" className="px-4 py-2 m-1 rounded bg-sisal-900 text-white hover:bg-sisal-400 focus:outline-none transition-colors">

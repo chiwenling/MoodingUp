@@ -1,24 +1,25 @@
-'use client'; 
-import React from "react";
-import Image from 'next/image';
+"use client"; 
+import React, { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { signOut} from 'firebase/auth';
-import { auth } from '../../../firebase';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectCurrentUser, userLoggedOut, selectAuthLoading } from '../../../lib/features/auth/authSlice';
+import { signOut } from "firebase/auth";
+import { auth } from "../../../firebase";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCurrentUser, userLoggedOut, selectAuthLoading } from "../../../lib/features/auth/authSlice";
 
 const navigation = [
-  { name: '關於', href: '/about', current: false },
-  { name: '心情小測', href: '/test', current: false },
-  { name: '預約聊天', href: '/booking', current: false },
-  { name: '輔導員介紹', href: '/people', current: false },
+  { name: "關於", href: "/about", current: false },
+  { name: "心情小測", href: "/test", current: false },
+  { name: "預約聊天", href: "/booking", current: false },
+  { name: "輔導員介紹", href: "/mentors", current: false },
 ];
 
 function classNames(...classes: (string | undefined | null | false)[]) {
-  return classes.filter(Boolean).join(' ');
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function MyHeader() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
   const user = useSelector(selectCurrentUser);
   const loading = useSelector(selectAuthLoading);
   const dispatch = useDispatch();
@@ -33,59 +34,102 @@ export default function MyHeader() {
   };
 
   const handleClick = (e: any, href: string) => {
-    if ((!user && (href === '/booking' || href === '/profile'))) {
+    if ((!user && (href === "/booking" || href === "/profile" || href === "/test"))) {
       e.preventDefault();
-      alert('請先登入');
+      alert("請先登入");
     }
   };
 
+  const OpenMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
+  const clickMenu = () => {
+    setIsMenuOpen(false); 
+  };
+
+  if(loading){
+    return null;
+  }
 
   return (
-    <div className="bg-sisal-300 h-20 flex items-center justify-between">
+    <div className="bg-sisal-300 h-20 flex items-center justify-between px-4 lg:px-20 relative z-10">
       <Link href="/">
-        <div className="flex items-center justify-items-start m-14 flex-none w-14 h-14">
+        <div className="flex items-center w-14 h-14">
           <Image src="/heart.png" alt="logo" width={60} height={48} className="rounded-full" />
         </div>
       </Link>
-
-      <div className="flex items-center justify-start grow h-20">
+      <div className="hidden lg:flex items-center justify-start ml-10 space-x-3 grow">
         {navigation.map((item) => (
           <Link key={item.name} href={item.href}>
-            <div onClick={(e) => handleClick(e, item.href)}
-            className={classNames(item.current
-                  ? 'bg-sisal-600 text-black'
-                  : 'text-sisal-900 hover:bg-sisal-400 hover:text-white',
-                'rounded-lg px-4 py-4 text-lg font-normal text-center cursor-pointer',
-              )}
-            >{item.name}
-          </div>
+            <div onClick={(e) => handleClick(e, item.href)} className={classNames(
+                item.current ? "bg-sisal-600 text-black" : "text-sisal-900 hover:bg-sisal-400 hover:text-white",
+                "rounded-lg px-4 py-2 text-lg font-normal cursor-pointer")}>{item.name}
+            </div>
           </Link>
         ))}
-      </div> 
-      <div className="flex items-center flex-none w-13 h-14 m-14 text-lg">
-      
-      <Link href="/profile">
-        <div onClick={(e) => handleClick(e,"/profile")} className="text-sisal-900 hover:bg-sisal-400 hover:text-white rounded-lg px-4 py-4 text-lg font-normal text-center cursor-pointer">
-          會員中心
-        </div>
-      </Link>
+      </div>
+      <div className="hidden lg:flex items-center space-x-3 pr-20">
+        <Link href="/profile">
+          <div onClick={(e) => handleClick(e, "/profile")} className="text-sisal-900 hover:bg-sisal-400 hover:text-white rounded-lg px-4 py-2 text-lg font-normal cursor-pointer">
+            會員中心
+          </div>
+        </Link>
 
-        {user||loading? (
-          <button
-            onClick={handleSignOut}
-            className="text-sisal-900 px-4 py-4 rounded-lg hover:bg-sisal-500 hover:text-white"
-          >
-            會員登出
-          </button>
+        {user || loading ? (
+          <button onClick={handleSignOut} className="text-lg text-sisal-900 px-4 py-2 rounded-lg hover:bg-sisal-500 hover:text-white"> 會員登出</button>
         ) : (
           <Link href="/login">
-            <button className="text-sisal-900 px-4 py-4 rounded-lg hover:bg-sisal-500 hover:text-white">
-              會員登入
-            </button>
+            <button className="text-lg text-sisal-900 px-4 py-2 rounded-lg hover:bg-sisal-500 hover:text-white">會員登入</button>
           </Link>
         )}
       </div>
+      <div className="lg:hidden flex items-center">
+        <button onClick={OpenMenu} className="text-sisal-900">
+          {isMenuOpen ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {isMenuOpen && (
+        <div className="lg:hidden fixed top-0 left-0 w-full h-full bg-sisal-100 flex flex-col items-center justify-center space-y-4 z-50">
+          <button onClick={OpenMenu} className="absolute top-4 right-4 text-sisal-900">
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+
+          {navigation.map((item) => (
+            <Link key={item.name} href={item.href}>
+              <div onClick={(e) => { handleClick(e, item.href); clickMenu(); }} 
+                className={classNames(item.current ? "bg-sisal-600 text-black" : "text-sisal-900 hover:bg-sisal-400 hover:text-white",
+                  "rounded-lg px-6 py-4 text-lg font-normal cursor-pointer")}>{item.name}
+              </div>
+            </Link>
+          ))}
+
+          <Link href="/profile">
+            <div onClick={(e) => { handleClick(e, "/profile"); clickMenu();}}
+              className="text-sisal-900 hover:bg-sisal-400 hover:text-white rounded-lg px-6 py-4 text-lg font-normal cursor-pointer">會員中心
+            </div>
+          </Link>
+
+          {user || loading ? (
+            <button onClick={() => { handleSignOut(); clickMenu(); }} className="text-sisal-900 px-6 py-4 rounded-lg hover:bg-sisal-500 hover:text-white"
+            >會員登出</button>) : (
+            <Link href="/login">
+              <button onClick={clickMenu} className="text-sisal-900 px-6 py-4 rounded-lg hover:bg-sisal-500 hover:text-white">會員登入</button>
+            </Link>
+          )}
+        </div>
+      )}
     </div>
   );
 }

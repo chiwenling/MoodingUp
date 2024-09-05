@@ -4,9 +4,9 @@ import Step from "./Components/Step"
 
 export default function Home() {
   return (
-    <div>     
+    <div>    
+      <Step /> 
       <Welcome />
-      <Step />
     </div> 
   );
 }
