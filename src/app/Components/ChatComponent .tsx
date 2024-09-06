@@ -20,8 +20,8 @@ export default function ChatComponent() {
   
   // 停止對話
   async function stopTalk(){
-    await handleSend("我想結束對話，請幫我總結吧");
-    // handleSend("請用「本次談話建議：」開頭，講10個字簡述這次談話的問題，和溫柔的解決方法",true)
+    await handleSend("我想結束談話");
+      handleSend("最後請幫我簡單一句話給出建議，請不要對我說再見，也不要對我說祝福或感謝的話",true)
     setChatEnd(true);
   }
 
@@ -44,7 +44,7 @@ export default function ChatComponent() {
   }
 
   useEffect(()=>{
-    if(inputValue === "我想結束對話，請幫我總結吧"){
+    if(inputValue === "我想結束談話"){
       alert("本次對話已儲存")
     }
   },[inputValue]);
@@ -104,7 +104,8 @@ export default function ChatComponent() {
       <div className="lg:w-[1000px] md:w-[800px] sm:w-[500px] tracking-wide p-4">
         <div className="bg-white rounded-lg shadow-2xl p-4">
             <div className="m-3">
-              <div className="flex mb-5 text-sisal-900">開啟對話時間：{currentTime}</div>
+              <div className="flex mb-3 text-sisal-900">開啟對話時間：{currentTime}</div>
+              <div className="flex mb-5 text-red-900">小提醒 : 本次對話為一次性</div>
               <div className="text-xl font-medium">AI 輔導員</div>
             </div>
 

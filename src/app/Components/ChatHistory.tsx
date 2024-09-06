@@ -57,16 +57,16 @@ export default function ChatHistory(){
 
 
     return(
-        <div className="hidden lg:block lg:m-5 tracking-wider w-1/4 bg-white rounded-lg border border-sisal-500">
+        <div className="hidden lg:block m-5 tracking-wider lg:w-1/2 bg-white rounded-lg border border-sisal-500">
             <div className="p-4 border-b border-gray-300 flex justify-between items-center bg-sisal-600 text-white rounded-lg">
                 <div className="text-lg font-normal pl-4">重點紀錄收集卡</div>
             </div>
         
-            <div className="m-4 overflow-y-auto h-screen p-2 mb-9 pb-20">
+            <div className="lg:block lg:m-2 overflow-y-auto h-screen p-2 mb-9 pb-20">
                 {chatHistory.length >0 ?(
                     chatHistory.map((history) => (
                         <div key={history.id} >
-                            <div className="m-6 group h-44 bg-transparent rounded-md perspective-1000">
+                            <div className="m-2 group h-44 bg-transparent rounded-md perspective-1000">
                                 <div className="relative w-full h-full text-center transition-transform duration-400 transform-style-3d group-hover:rotate-y-180">
                                     <div className="absolute w-full h-full bg-sisal-200 text-black rounded-lg">
                                         <div className="pt-10 text-lg font-semibold">{history.time}</div> 
@@ -74,7 +74,7 @@ export default function ChatHistory(){
                                     </div>
                                     <div className="absolute w-full h-full bg-sisal-500 text-white rotate-y-180 backface-hidden p-6 text-justify rounded-lg">
                                         {history.keypoint}
-                                        <div className="flex justify-end items-end m-3">
+                                        <div className="flex justify-center items-center m-1">
                                             <Image src="/trashcan.png" alt="logo" width={40} height={40} className="p-1 bg-white rounded-lg cursor-pointer" onClick={()=>deleteRecord(history.id)} />
                                         </div>
                                     </div>
