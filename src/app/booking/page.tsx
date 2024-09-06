@@ -28,40 +28,42 @@ export default function Booking() {
   }
   
     return (
-      <div className="h-full tracking-wide">
+        <div className="h-full tracking-wide p-6">
         <Scorecard  />
-        
-        <div className="flex justify-center item-center text-lg text-white ">
-          <div className="mt-8 mb-8 mr-20 max-w-sm bg-gradient-to-b from-orange-200 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
-              <div className="w-[150px] h-[150px] mx-auto mt-5 overflow-hidden rounded-full shadow-lg">
-                <Image src="/a01.gif" width={150} height={150} className="bg-sisal-100 w-full h-full object-cover animate-pulse" alt="AI聊天圖片" />
-              </div>
-
-              <div className="p-10 text-center ">
-                <h2 className="mb-3 text-2xl font-medium tracking-wider text-black">AI 聊聊諮詢室</h2>
-                <Button href="/AIchat"text="開始聊天" bg="bg-orange-400"/>
-                <p className="text-justify mb-4 text-base font-base text-gray-700 transition-all duration-300 hover:text-gray-900">
-                  透過聊天也許你能獲得一些解答，無論你現在正在面對什麼問題，AI 將提供你最立即的需要、最立即的陪伴！
-                </p>               
-              </div>
+        <div className="flex flex-col lg:flex-row justify-center items-center lg:text-base text-white space-y-10 lg:space-y-0 lg:space-x-10">
+          <div className="max-w-md bg-gradient-to-b from-orange-200 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
+            <div className="w-[150px] h-[150px] mx-auto mt-5 overflow-hidden rounded-full shadow-lg">
+              <Image src="/a01.gif" width={150} height={150} className="bg-sisal-100 w-full h-full object-cover animate-pulse" alt="AI聊天圖片"
+              />
+            </div>
+            <div className="p-8 text-center">
+              <h2 className="mb-3 text-2xl font-medium tracking-wider text-black">
+                AI 聊聊諮詢室
+              </h2>
+              <Button href="/AIchat" text="開始聊天" bg="bg-orange-400" />
+              <p className="mt-4 text-justify text-base text-gray-700 transition-all duration-300 hover:text-gray-900">
+                透過聊天也許你能獲得一些解答，無論你現在正在面對什麼問題，AI 將提供你最立即的需要、最立即的陪伴！
+              </p>
+            </div>
           </div>
 
-          <div className="mt-8 mb-8 ml-10 max-w-sm bg-gradient-to-b from-pink-300 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
-              <div className="w-[150px] h-[150px] mx-auto mt-5 overflow-hidden rounded-full shadow-lg">
-                <Image src="/soft.gif" width={100} height={100} className="bg-sisal-100 w-full h-full object-cover animate-pulse" alt="AI聊天圖片" />
-              </div>
-              <div className="p-10 text-center ">
-                <h2 className="mb-3 text-2xl font-medium tracking-wider text-black">預約真人輔導</h2>
-                <Button href="/Startbook"text="立即預約" bg="bg-purple-400"/>
-                
-                <p className="text-justify mb-4 text-base font-base text-gray-700 transition-all duration-300 hover:text-gray-900">
-                  針對想討論的主題，隨時預約 1 對 1 輔導，輔導員將聆聽你的故事、分享建議，幫助你找到方向，讓我們一起走過關卡！
-                </p>
-               
-              </div>
+          <div className="max-w-md bg-gradient-to-b from-pink-300 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
+            <div className="w-[150px] h-[150px] mx-auto mt-5 overflow-hidden rounded-full shadow-lg">
+              <Image src="/soft.gif" width={150} height={150} className="bg-sisal-100 w-full h-full object-cover animate-pulse" alt="真人輔導圖片" />
+            </div>
+            <div className="p-8 text-center">
+              <h2 className="mb-3 text-2xl font-medium tracking-wider text-black">
+                預約真人輔導
+              </h2>
+              <Button href="/Startbook" text="立即預約" bg="bg-purple-400" />
+              <p className="mt-4 text-justify text-base text-gray-700 transition-all duration-300 hover:text-gray-900">
+                針對想討論的主題，隨時預約 1 對 1 輔導，輔導員將聆聽你的故事、分享建議，幫助你找到方向，讓我們一起走過關卡！
+              </p>
+            </div>
           </div>
         </div>
       </div>
+
     );
   }
   
