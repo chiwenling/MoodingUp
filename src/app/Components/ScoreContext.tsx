@@ -1,5 +1,7 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectCurrentUser, userLoggedOut, selectAuthLoading } from "../../../lib/features/auth/authSlice";
 
 interface ScoreContextType {
   score: number;
@@ -11,11 +13,13 @@ const ScoreContext = createContext<ScoreContextType | undefined>(undefined);
 
 export const ScoreProvider = ({ children }: { children: React.ReactNode }) => {
   const [score, setScoreState] = useState<number>(0);
-
+  const user = useSelector(selectCurrentUser);
   useEffect(() => {
-    const savedScore = localStorage.getItem("score");
+    let savedScore = localStorage.getItem("score");
     if (savedScore) {
       setScoreState(Number(savedScore)); 
+    }if(!user){
+      localStorage.removeItem("score");;
     }
   }, []);
 

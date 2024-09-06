@@ -1,6 +1,6 @@
 import { db }  from "../../../firebase";
 import React, { useState,useEffect} from 'react';
-import { collection, query, where, doc, deleteDoc, orderBy, onSnapshot} from "firebase/firestore";
+import { collection, query, where, doc, deleteDoc, orderBy, onSnapshot, getDocs,updateDoc} from "firebase/firestore";
 import { useSelector } from 'react-redux';
 import { RootState } from "../../../lib/store"
 
@@ -11,6 +11,8 @@ export default function Record(){
         date: string; 
         time: string; 
         teacher: string; 
+        teacherEmail:string;
+        roomLink:string;
         topic: string }[]>([]);
 
     useEffect(() => {
@@ -19,15 +21,35 @@ export default function Record(){
         }
     }, [user]);
 
-    // 刪除預約資料
-    async function deleteRecord(id:string){
-            try {
-              await deleteDoc(doc(db, "reservation", id));
-              alert("已刪除預約資料");
-            } catch (error) {
-              console.error("刪除錯誤", error);
-            }
-          };
+    async function deleteRecord(id: string, mentorEmail: string, selectedDate: string, selectedPeriod: string) {
+        try {
+          await deleteDoc(doc(db, "reservation", id));
+          const q = query(collection(db, "availableTime"),where("email", "==", mentorEmail));
+          const querySnapshot = await getDocs(q);
+      
+          querySnapshot.forEach(async (document:any) => {
+            const availableTimeData = document.data();
+            const updatedOpenTime = availableTimeData.openTime.map((openTime: any) => {
+              if (openTime.date === selectedDate) {
+                return {
+                  ...openTime,
+                  periods: openTime.periods.map((period: any) =>
+                    period.period === selectedPeriod ? { ...period, isAvailable: true } : period
+                  ),
+                };
+              }
+              return openTime;
+            });
+            const availableTimeDocRef = doc(db, "availableTime", document.id);
+            await updateDoc(availableTimeDocRef, { openTime: updatedOpenTime });
+          });
+      
+          alert("預約已取消並恢復可用時間");
+        } catch (error) {
+          console.error("刪除錯誤", error);
+        }
+      }
+      
     
     // 抓預約資料
     async function load(email: string) {
@@ -42,7 +64,9 @@ export default function Record(){
                         date: data.date,
                         time: data.time,
                         teacher: data.teacher,
+                        teacherEmail:data.teacherEmail,
                         topic: data.topic,
+                        roomLink:data.roomLink
                     };
                 });
                 setRecordData(records);
@@ -60,8 +84,8 @@ export default function Record(){
                 <table className="w-full text-base text-left rtl:text-right text-gray-500 ">
                     <thead className="text-gray-700 uppercase bg-sisal-200 ">
                         <tr>
-                            <th scope="col" className="px-6 py-3"> 預約日期</th>
-                            <th scope="col" className="px-6 py-3"> 預約時間</th>
+                            <th scope="col" className="px-4 py-3"> 預約日期</th>
+                            <th scope="col" className="px-2 py-3"> 預約時間</th>
                             <th scope="col" className="px-6 py-3"> 輔導老師</th>
                             <th scope="col" className="px-6 py-3"> 諮詢主題</th>
                             <th scope="col" className="px-6 py-3"> 諮詢室</th>
@@ -72,13 +96,15 @@ export default function Record(){
                         {recordData.length > 0 ? (
                             recordData.map((record) => (
                                 <tr key={record.id} className="font-normal text-gray-900 bg-white border-b hover:bg-gray-50">
-                                    <td className="px-6 py-4 whitespace-nowrap">{record.date}</td>
-                                    <td className="px-6 py-4">{record.time}</td>
+                                    <td className="px-4 py-4 whitespace-nowrap">{record.date}</td>
+                                    <td className="px-2 py-4">{record.time}</td>
                                     <td className="px-6 py-4">{record.teacher}</td>
                                     <td className="px-6 py-4">{record.topic}</td>
-                                    <td className="px-6 py-4">進入諮詢室</td>
+                                    <a href={record.roomLink}>
+                                        <td className="px-6 py-4 text-orange-600 ">點擊進入諮詢室</td>
+                                    </a>
                                     <td className="px-6 py-4 text-right">
-                                        <div className="flex font-medium text-sisal-600 hover:underline" onClick={() => deleteRecord(record.id)}>取消預約</div>
+                                        <div className="flex font-medium text-sisal-600 hover:underline" onClick={() => deleteRecord(record.id, record.teacherEmail, record.date, record.time)}>取消預約</div>
                                     </td>
                                 </tr>
                             ))

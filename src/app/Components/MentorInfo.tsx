@@ -11,8 +11,6 @@ export default function MentorInfo(){
     const user = useSelector(selectCurrentUser);
     const [loading, setLoading] = useState(true); 
     const [message, setMessage] = useState("");
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [googleMeetLink, setGoogleMeetLink] = useState(""); 
     const [mentorProfile, setmentorProfile] = useState({
         id:"",
         name: "",
@@ -58,7 +56,7 @@ export default function MentorInfo(){
               id:user.uid,
               email: user.email,
               skill:skills,
-              googleMeetLink: googleMeetLink,
+              googleMeetLink: mentorProfile.googleMeetLink,
             });
             alert("已更新資料");
           } catch (error) {
@@ -108,7 +106,6 @@ export default function MentorInfo(){
           <div className="container mx-auto p-4 bg-white shadow rounded-lg p-6">
             <div className="tracking-wider">
               <div className="text-xl font-semibold mb-4 text-gray-900">輔導員建檔資料</div>
-
               <p className="text-gray-600 mb-6">將公開顯示於介紹頁</p>
               <form onSubmit={handleSubmit}>
                 <div className="mb-4 flex items-center space-x-4">
@@ -149,7 +146,7 @@ export default function MentorInfo(){
                   
                     <div className="mb-4 flex items-center space-x-4">
                       <div className="bg-sisal-100  border text-gray rounded-lg px-6 py-2 whitespace-nowrap">聊天室連結</div>
-                      <input type="text" value={mentorProfile.googleMeetLink}
+                      <input type="text" name="googleMeetLink" value={mentorProfile.googleMeetLink}
                         onChange={handleChange}
                         className="border border-gray-300 p-2 rounded-lg w-full focus:outline-none focus:border-sisal-300"
                         placeholder="輸入您專屬的 Google Meet 連結"

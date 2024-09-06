@@ -38,7 +38,7 @@ export default function ChatHistory(){
     // 讀取重點紀錄
     async function getHistory(email:string){
         const q = query(collection(db, "chatHistory"), where("email", "==", email), orderBy("time", "desc"));
-        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        onSnapshot(q, (querySnapshot) => {
         const history = querySnapshot.docs.map(doc => {
             const data = doc.data();
             console.log("目前讀到的資料",data);
@@ -57,21 +57,20 @@ export default function ChatHistory(){
 
 
     return(
-        <div className="m-5 tracking-wider w-1/4 bg-white rounded-lg border border-sisal-500">
+        <div className="hidden lg:block lg:m-5 tracking-wider w-1/4 bg-white rounded-lg border border-sisal-500">
             <div className="p-4 border-b border-gray-300 flex justify-between items-center bg-sisal-600 text-white rounded-lg">
                 <div className="text-lg font-normal pl-4">重點紀錄收集卡</div>
             </div>
         
             <div className="m-4 overflow-y-auto h-screen p-2 mb-9 pb-20">
-            {chatHistory.length >0 ?(
-                chatHistory.map((history) => (
-                    
+                {chatHistory.length >0 ?(
+                    chatHistory.map((history) => (
                         <div key={history.id} >
                             <div className="m-6 group h-44 bg-transparent rounded-md perspective-1000">
                                 <div className="relative w-full h-full text-center transition-transform duration-400 transform-style-3d group-hover:rotate-y-180">
                                     <div className="absolute w-full h-full bg-sisal-200 text-black rounded-lg">
                                         <div className="pt-10 text-lg font-semibold">{history.time}</div>
-                                        <div className="pt-4 text-gray-600">{history.message}</div>
+                                        <div className="pt-4 text-gray-600">請翻面看本次談話重點</div> 
                                     </div>
                                     <div className="absolute w-full h-full bg-sisal-500 text-white rotate-y-180 backface-hidden p-6 text-justify rounded-lg">
                                         {history.keypoint}
@@ -82,9 +81,7 @@ export default function ChatHistory(){
                                 </div>
                             </div>
                         </div>  
-                )))
-                :( <div>沒有談話記錄</div>
-            )}  
+                ))):( <div>沒有談話記錄</div>)}  
             </div>  
         </div>
     );

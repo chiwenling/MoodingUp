@@ -28,6 +28,7 @@ export default function MyHeader() {
     try {
       await signOut(auth);
       dispatch(userLoggedOut());
+      localStorage.removeItem("score");
     } catch (error) {
       console.error("登出有問題", error);
     }
@@ -48,9 +49,7 @@ export default function MyHeader() {
     setIsMenuOpen(false); 
   };
 
-  if(loading){
-    return null;
-  }
+  
 
   return (
     <div className="bg-sisal-300 h-20 flex items-center justify-between px-4 lg:px-20 relative z-10">
