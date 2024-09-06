@@ -21,6 +21,7 @@ export default function Admin() {
       moodScore: "",
     });
     
+    
     useEffect(() => {
       const fetchProfile = async () => {
         if (user) {
