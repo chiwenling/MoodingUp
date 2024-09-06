@@ -74,7 +74,7 @@ export default function ChatHistory(){
                                     </div>
                                     <div className="absolute w-full h-full bg-sisal-500 text-white rotate-y-180 backface-hidden p-6 text-justify rounded-lg">
                                         {history.keypoint}
-                                        <div className="flex justify-center items-center m-1">
+                                        <div className="flex justify-center items-center m-3">
                                             <Image src="/trashcan.png" alt="logo" width={40} height={40} className="p-1 bg-white rounded-lg cursor-pointer" onClick={()=>deleteRecord(history.id)} />
                                         </div>
                                     </div>
