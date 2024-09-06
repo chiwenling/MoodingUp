@@ -87,20 +87,25 @@ export default function Admin() {
 
     return (
       <div className="tracking-wide">
-        <div className="bg-gray-100 transition-colors duration-300">
+          <div className="bg-gray-100 transition-colors duration-300">
           <div className="container mx-auto p-4">
             <div className="bg-white shadow rounded-lg p-6">
-              <div className="flex items-center">
-                <div className="text-xl font-semibold mb-4 text-gray-900">基本資料</div>
                 <Link href="/mentorProfile">
-                {isAdmin?<div className="flex justify-start mb-6 ml-4">
-                      <button type="submit" id="save" className="px-4 py-2 rounded bg-red-500 text-white hover:bg-red-400 focus:outline-none transition-colors">
-                      編輯輔導簡介
-                      </button>
-                  </div>:null}
-                </Link>
-                </div>
-
+                    {isAdmin?<div className="flex justify-center itmes-center ml-1">
+                          <button type="submit" id="save" className="w-1/3 px-4 py-2 rounded bg-sisal-500 text-white hover:bg-sisal-900 focus:outline-none transition-colors">
+                          編輯輔導員公開簡介
+                          </button>
+                      </div>:null}
+                </Link></div>
+                
+            </div>
+          </div>
+          <div className="bg-gray-100 transition-colors duration-300">
+            <div className="container mx-auto p-4">
+              <div className="bg-white shadow rounded-lg p-6">
+                <div className="flex items-center">
+                  <div className="text-xl font-semibold mb-4 text-gray-900">基本資料</div>
+                </div>  
               <p className="text-gray-600 mb-6">以下資料不會公開顯示</p>
               <form onSubmit={handleSubmit}>
                 <div className="mb-4 flex items-center space-x-4 ">
@@ -159,8 +164,7 @@ export default function Admin() {
             </div>
           </div>
         </div>
-        
-      </div>
+    </div>
     );
   }
   
