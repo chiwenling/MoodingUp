@@ -82,29 +82,29 @@ export default function Record(){
         <div className="tracking-wide container mx-auto p-4 mb-10">
             <div className="relative overflow-x-auto shadow-md ">
                 <table className="w-full text-base text-left rtl:text-right text-gray-500 ">
-                    <thead className="text-gray-700 uppercase bg-sisal-200 ">
+                    <thead className="text-sm sm:text-base text-center text-gray-700 uppercase bg-sisal-200 ">
                         <tr>
-                            <th scope="col" className="px-4 py-3"> 預約日期</th>
-                            <th scope="col" className="px-2 py-3"> 預約時間</th>
-                            <th scope="col" className="px-6 py-3"> 輔導老師</th>
-                            <th scope="col" className="px-6 py-3"> 諮詢主題</th>
-                            <th scope="col" className="px-6 py-3"> 諮詢室</th>
-                            <th scope="col" className="px-6 py-3"> 取消預約</th>
+                            <th scope="col" className="px-3 py-3"> 預約日期</th>
+                            <th scope="col" className="px-3 py-3"> 預約時間</th>
+                            <th scope="col" className="px-3 py-3"> 輔導老師</th>
+                            <th scope="col" className="px-3 py-3"> 諮詢主題</th>
+                            <th scope="col" className="px-3 py-3"> 諮詢連結</th>
+                            <th scope="col" className="px-3 py-3"> 取消預約</th>
                         </tr>
                     </thead>
                     <tbody>
                         {recordData.length > 0 ? (
                             recordData.map((record) => (
-                                <tr key={record.id} className="font-normal text-gray-900 bg-white border-b hover:bg-gray-50">
+                                <tr key={record.id} className="text-sm sm:text-base text-center font-normal text-gray-900 bg-white border-b hover:bg-gray-50">
                                     <td className="px-4 py-4 whitespace-nowrap">{record.date}</td>
-                                    <td className="px-2 py-4">{record.time}</td>
-                                    <td className="px-6 py-4">{record.teacher}</td>
-                                    <td className="px-6 py-4">{record.topic}</td>
+                                    <td className="px-3 py-4">{record.time}</td>
+                                    <td className="px-2 py-4">{record.teacher}</td>
+                                    <td className="px-3 py-4">{record.topic}</td>
                                     <a href={record.roomLink}>
-                                        <td className="px-6 py-4 text-orange-600 ">點擊進入諮詢室</td>
+                                        <td className="px-2 py-4 text-orange-600 ">連結</td>
                                     </a>
                                     <td className="px-6 py-4 text-right">
-                                        <div className="flex font-medium text-sisal-600 hover:underline" onClick={() => deleteRecord(record.id, record.teacherEmail, record.date, record.time)}>取消預約</div>
+                                        <div className="text-center font-medium text-sisal-600 hover:underline" onClick={() => deleteRecord(record.id, record.teacherEmail, record.date, record.time)}>取消預約</div>
                                     </td>
                                 </tr>
                             ))

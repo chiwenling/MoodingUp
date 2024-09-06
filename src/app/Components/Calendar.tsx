@@ -174,7 +174,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             <input type="number" value={endTime} onChange={(e) => setEndTime(e.target.value)} placeholder="17" className="w-1/8 border p-2 ml-4 rounded-lg" min="10" max="21"/>
         </div>
 
-        <button type="button" onClick={handleAddPeriod} className="w-1/4 bg-sisal-800 text-white px-4 py-2 rounded-lg hover:bg-sisal-600">
+        <button type="button" onClick={handleAddPeriod} className="w-1/3 sm:w-1/4 bg-sisal-800 text-white px-4 py-2 rounded-lg hover:bg-sisal-600">
           增加預約時段
         </button>
 
@@ -183,7 +183,7 @@ const handleSubmit = async (e: React.FormEvent) => {
               {!openTime || openTime.length === 0 ? (
                 <p className="text-gray-500 mt-2">還未設定可預約時段</p>
               ) : (
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto rounded-lg">
                   <table className="min-w-full table-auto">
                     <thead className="bg-sisal-200">
                       <tr>
@@ -210,11 +210,11 @@ const handleSubmit = async (e: React.FormEvent) => {
                             {slot.periods.map((periodpreOpenTime, periodIndex)=>(
                               <div key={periodIndex} className="mb-2">
                                 {periodpreOpenTime.isAvailable ? (
-                                  <button type="button" onClick={() => handleRemovePeriod(index, periodIndex)} className="bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600">
+                                  <button type="button" onClick={() => handleRemovePeriod(index, periodIndex)} className="text-sm bg-red-500 text-white px-3 py-1 rounded-lg hover:bg-red-600">
                                     刪除
                                   </button>
                                 ) : (
-                                  <button type="button" disabled className="bg-gray-300 text-gray-500 px-3 py-1 rounded-lg cursor-not-allowed">
+                                  <button type="button" disabled className="text-start bg-gray-300 text-gray-500 px-3 py-2 mt-1 rounded-lg cursor-not-allowed text-sm">
                                     已被預約，無法刪除
                                   </button>
                                 )}

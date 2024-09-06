@@ -141,7 +141,7 @@ export default function MentorInfo(){
                   <div className="bg-sisal-100  border text-gray rounded-lg px-12 py-2 whitespace-nowrap">簡歷</div>
                   <input type="text" name="introduction" value={mentorProfile.introduction} onChange={handleChange} placeholder="簡介與特殊經驗，限50字" className="border p-2 w-full h-[100px] rounded-lg focus:outline-none focus:border-sisal-300" />
                 </div>
-                <div className=" text-lg font-normal mb-4 text-yellow-900">＊請放心，google連結不公開顯示，僅提供給預約者，請放心輸入您專屬的GoogleMeet連結</div>
+                <div className="text-base font-normal mb-4 text-yellow-900">＊請放心，google連結不公開顯示，僅提供給預約者，請放心輸入您專屬的GoogleMeet連結</div>
                   {message && <p className="text-green-500">{message}</p>}
                   
                     <div className="mb-4 flex items-center space-x-4">
@@ -153,10 +153,10 @@ export default function MentorInfo(){
                         required />
                     </div>
             
-                <div className="flex justify-end">
+                <div className="flex justify-center">
                     <Link href="/profile">
                         <button type="button" id="return" className="px-4 py-2 m-1 rounded bg-sisal-500 text-white hover:bg-sisal-400 focus:outline-none transition-colors">
-                        返回基本資料
+                        返回編輯基本資料
                         </button>
                     </Link>
                     <button type="submit" id="save" className="px-4 py-2 m-1 rounded bg-sisal-900 text-white hover:bg-sisal-400 focus:outline-none transition-colors">

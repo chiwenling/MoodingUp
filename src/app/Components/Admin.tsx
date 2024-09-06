@@ -90,15 +90,15 @@ export default function Admin() {
           <div className="bg-gray-100 transition-colors duration-300">
           <div className="container mx-auto p-4">
             <div className="bg-white shadow rounded-lg p-6">
+                <div className="text-center text-lg font-semibold mb-4 text-gray-900">輔導員基本資料</div>                
                 <Link href="/mentorProfile">
-                    {isAdmin?<div className="flex justify-center itmes-center ml-1">
+                    {isAdmin?<div className="flex justify-center ml-1">
                           <button type="submit" id="save" className="lg:w-1/3 px-4 py-2 rounded bg-sisal-500 text-white hover:bg-sisal-900 focus:outline-none transition-colors">
-                          編輯輔導員公開簡介
+                          編輯公開簡介
                           </button>
                       </div>:null}
                 </Link></div>
-                
-            </div>
+              </div>
           </div>
           <div className="bg-gray-100 transition-colors duration-300">
             <div className="container mx-auto p-4">

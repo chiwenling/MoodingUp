@@ -28,10 +28,10 @@ export default function Booking() {
   }
   
     return (
-        <div className="h-full tracking-wide p-6">
+        <div className="h-full tracking-wide p-6 mb-8">
         <Scorecard  />
         <div className="flex flex-col lg:flex-row justify-center items-center lg:text-base text-white space-y-10 lg:space-y-0 lg:space-x-10">
-          <div className="max-w-md bg-gradient-to-b from-orange-200 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
+          <div className="sm:mr-20 max-w-md sm:max-w-sm bg-gradient-to-b from-orange-200 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
             <div className="w-[150px] h-[150px] mx-auto mt-5 overflow-hidden rounded-full shadow-lg">
               <Image src="/a01.gif" width={150} height={150} className="bg-sisal-100 w-full h-full object-cover animate-pulse" alt="AI聊天圖片"
               />
@@ -47,7 +47,7 @@ export default function Booking() {
             </div>
           </div>
 
-          <div className="max-w-md bg-gradient-to-b from-pink-300 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
+          <div className="max-w-md sm:max-w-sm bg-gradient-to-b from-pink-300 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
             <div className="w-[150px] h-[150px] mx-auto mt-5 overflow-hidden rounded-full shadow-lg">
               <Image src="/soft.gif" width={150} height={150} className="bg-sisal-100 w-full h-full object-cover animate-pulse" alt="真人輔導圖片" />
             </div>

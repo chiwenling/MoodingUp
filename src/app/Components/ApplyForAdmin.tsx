@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../lib/features/auth/authSlice";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../../firebase";
+import Link from "next/link";
 
 export default function ApplyForAdmin() {
   const user = useSelector(selectCurrentUser); 
@@ -90,7 +91,7 @@ export default function ApplyForAdmin() {
                 <div className="text-center lg:w-1/3 bg-gray-100 border border-gray-300 text-gray-700 px-4 py-3 rounded relative">
                   {isAdmin ? "您已經是輔導員，請編輯輔導員簡介。" : "申請已提交，請等待審核。"}
                 </div>
-              )}
+              )}    
             </div>
           </div>
         </div>
