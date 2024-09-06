@@ -20,8 +20,8 @@ export default function ChatComponent() {
   
   // 停止對話
   async function stopTalk(){
-    await handleSend("我想結束對話");
-    await handleSend("請用「本次談話建議：」開頭，講10個字簡述這次談話的問題，和溫柔的解決方法",true)
+    await handleSend("我想結束對話，請幫我總結吧");
+    // handleSend("請用「本次談話建議：」開頭，講10個字簡述這次談話的問題，和溫柔的解決方法",true)
     setChatEnd(true);
   }
 
@@ -44,7 +44,7 @@ export default function ChatComponent() {
   }
 
   useEffect(()=>{
-    if(inputValue === "我想結束對話"){
+    if(inputValue === "我想結束對話，請幫我總結吧"){
       alert("本次對話已儲存")
     }
   },[inputValue]);

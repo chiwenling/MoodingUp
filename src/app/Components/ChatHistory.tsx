@@ -69,7 +69,7 @@ export default function ChatHistory(){
                             <div className="m-6 group h-44 bg-transparent rounded-md perspective-1000">
                                 <div className="relative w-full h-full text-center transition-transform duration-400 transform-style-3d group-hover:rotate-y-180">
                                     <div className="absolute w-full h-full bg-sisal-200 text-black rounded-lg">
-                                        <div className="pt-10 text-lg font-semibold">{history.time}</div>
+                                        <div className="pt-10 text-lg font-semibold">{history.time}</div> 
                                         <div className="pt-4 text-gray-600">請翻面看本次談話重點</div> 
                                     </div>
                                     <div className="absolute w-full h-full bg-sisal-500 text-white rotate-y-180 backface-hidden p-6 text-justify rounded-lg">
