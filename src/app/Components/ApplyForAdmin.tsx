@@ -62,7 +62,7 @@ export default function ApplyForAdmin() {
       setIsPendingAdmin(true);
     } catch (error) {
       console.error("申請失敗：", error);
-      setMessage("請稍後再試");
+      setMessage("請先填寫基本資料");
     } finally {
       setLoading(false); 
     }
