@@ -53,7 +53,7 @@ export default function Register() {
           </div>
         <form onSubmit={handleSubmit} className="mt-12 z-1" action="#">
           <div className="flex justify-center self-center">
-            <div className="relative h-[580px] w-[400px] p-10 bg-white mx-3 rounded-2xl">
+            <div className="relative h-[580px] lg:w-[400px] p-10 bg-white mx-3 rounded-2xl">
               <div className="mb-6">
                 <h3 className="font-semibold text-2xl text-gray-600">註冊新會員</h3>
               </div>

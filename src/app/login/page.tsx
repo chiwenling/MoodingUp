@@ -56,7 +56,7 @@ return(
 
       <form onSubmit={handleSubmit} className="mt-12 z-1">
         <div className="flex justify-center self-center " >
-          <div className="relative h-[520px] w-[400px] p-10 bg-white mx-4 rounded-2xl ">
+          <div className="relative h-[520px] lg:w-[400px] p-10 bg-white mx-4 rounded-2xl ">
             <h3 className="font-semibold text-2xl text-gray-600 mb-2">會員登入</h3>
             <GoogleAuth />
             <div className="relative space-y-4">

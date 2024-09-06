@@ -68,7 +68,7 @@ export default function MyHeader() {
           </Link>
         ))}
       </div>
-      <div className="hidden lg:flex items-center space-x-3 pr-20">
+      <div className="hidden lg:flex items-center space-x-1 pr-20">
         <Link href="/profile">
           <div onClick={(e) => handleClick(e, "/profile")} className="text-sisal-900 hover:bg-sisal-400 hover:text-white rounded-lg px-4 py-2 text-lg font-normal cursor-pointer">
             會員中心
@@ -121,10 +121,10 @@ export default function MyHeader() {
           </Link>
 
           {user || loading ? (
-            <button onClick={() => { handleSignOut(); clickMenu(); }} className="text-sisal-900 px-6 py-4 rounded-lg hover:bg-sisal-500 hover:text-white"
+            <button onClick={() => { handleSignOut(); clickMenu(); }} className=" text-lg text-sisal-900 px-6 py-4 rounded-lg hover:bg-sisal-500 hover:text-white"
             >會員登出</button>) : (
             <Link href="/login">
-              <button onClick={clickMenu} className="text-sisal-900 px-6 py-4 rounded-lg hover:bg-sisal-500 hover:text-white">會員登入</button>
+              <button onClick={clickMenu} className=" text-lg text-sisal-900 px-6 py-4 rounded-lg hover:bg-sisal-500 hover:text-white">會員登入</button>
             </Link>
           )}
         </div>
