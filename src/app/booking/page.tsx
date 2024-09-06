@@ -30,6 +30,7 @@ export default function Booking() {
     return (
       <div className="h-full tracking-wide">
         <Scorecard  />
+        
         <div className="flex justify-center item-center text-lg text-white ">
           <div className="mt-8 mb-8 mr-20 max-w-sm bg-gradient-to-b from-orange-200 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
               <div className="w-[150px] h-[150px] mx-auto mt-5 overflow-hidden rounded-full shadow-lg">

@@ -92,7 +92,7 @@ export default function Admin() {
             <div className="bg-white shadow rounded-lg p-6">
                 <Link href="/mentorProfile">
                     {isAdmin?<div className="flex justify-center itmes-center ml-1">
-                          <button type="submit" id="save" className="w-1/3 px-4 py-2 rounded bg-sisal-500 text-white hover:bg-sisal-900 focus:outline-none transition-colors">
+                          <button type="submit" id="save" className="lg:w-1/3 px-4 py-2 rounded bg-sisal-500 text-white hover:bg-sisal-900 focus:outline-none transition-colors">
                           編輯輔導員公開簡介
                           </button>
                       </div>:null}

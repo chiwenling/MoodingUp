@@ -87,7 +87,7 @@ export default function ApplyForAdmin() {
                   {loading ? "提交中..." : "申請成為輔導員"}
                 </button>
               ) : (
-                <div className="text-center w-1/3 bg-gray-100 border border-gray-300 text-gray-700 px-4 py-3 rounded relative">
+                <div className="text-center lg:w-1/3 bg-gray-100 border border-gray-300 text-gray-700 px-4 py-3 rounded relative">
                   {isAdmin ? "您已經是輔導員，請編輯輔導員簡介。" : "申請已提交，請等待審核。"}
                 </div>
               )}
