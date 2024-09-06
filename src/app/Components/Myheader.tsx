@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { signOut } from "firebase/auth";
 import { auth } from "../../../firebase";
+import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser, userLoggedOut, selectAuthLoading } from "../../../lib/features/auth/authSlice";
 
@@ -21,6 +22,7 @@ function classNames(...classes: (string | undefined | null | false)[]) {
 export default function MyHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false); 
   const user = useSelector(selectCurrentUser);
+  const router = useRouter();
   const loading = useSelector(selectAuthLoading);
   const dispatch = useDispatch();
 
@@ -37,7 +39,8 @@ export default function MyHeader() {
   const handleClick = (e: any, href: string) => {
     if ((!user && (href === "/booking" || href === "/profile" || href === "/test"))) {
       e.preventDefault();
-      alert("請先登入");
+      // alert("請先登入");
+      router.push("/login");
     }
   };
 
