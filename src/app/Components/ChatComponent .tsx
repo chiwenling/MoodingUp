@@ -96,13 +96,14 @@ export default function ChatComponent() {
   return ( 
     <div>
       <Link href="/">
-        <div className="flex justify-end">
-          <button className="m-5 tracking-wider text-lg bg-sisal-900 text-white px-4 py-2 rounded-full ml-3 hover:bg-sisal-600"
-          >回到首頁 ➤</button>
+        <div className="flex justify-start items-center ml-12">
+          <button className="m-5 tracking-wider text-base bg-sisal-900 text-white px-4 py-2 rounded-full ml-3 hover:bg-sisal-600"
+          >回到首頁 </button>
         </div>
       </Link>
-      <div className="lg:w-[1000px] md:w-[800px] sm:w-[500px] tracking-wide p-4">
-        <div className="bg-white rounded-lg shadow-2xl p-4">
+
+      <div className="sm:ml-10 lg:w-[1000px] md:w-[800px] sm:w-[500px] tracking-wide p-4">
+        <div className="bg-white rounded-lg shadow-xl p-4">
             <div className="m-3">
               <div className="flex mb-3 text-sisal-900">開啟對話時間：{currentTime}</div>
               <div className="flex mb-5 text-red-900">小提醒 : 本次對話為一次性</div>
@@ -113,7 +114,7 @@ export default function ChatComponent() {
             {messages.map((message, index) =>
               message.type === "received" ? (
                 <div key={index} className="flex items-start">
-                  <div className="ml-3 bg-gray-100 p-3 rounded-lg">
+                  <div className="ml-1 mb-5 bg-gray-100 shadow p-3 tracking-wider rounded-lg">
                     <p className="text-base text-gray-800">{message.content}</p>
                   </div>
                 </div>
@@ -128,21 +129,19 @@ export default function ChatComponent() {
           </div>
 
           <div className="mt-4 flex items-center">
-            <input
-              type="text"
-              placeholder="請放心打下你想詢問的問題喔～"
+            <input type="text" placeholder="請放心打下你想詢問的問題喔～"
               className="flex-1 py-2 px-3 rounded-full bg-gray-100 focus:outline-none text-base"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
+              value={inputValue} onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && !loading && !chatEnd && handleSend(inputValue)}
               disabled={loading}
             />
+
             <button
               className="px-4 py-2 ml-3 text-white rounded-full bg-sisal-400 hover:bg-sisal-600 disabled:bg-gray-400 disabled:hover:bg-gray-400"
               onClick={()=>handleSend(inputValue)}
               disabled={loading||chatEnd}
             >
-              {loading ? "處理中..." : "送出"}
+              {loading ? "請稍等..." : "送出"}
             </button>
             <button className={chatEnd? "bg-red-700 text-white px-4 py-2 rounded-full ml-3 hover:bg-red-500":"bg-sisal-700 text-white px-4 py-2 rounded-full ml-3 hover:bg-sisal-500"}
               onClick={chatEnd? saveHistory:stopTalk}

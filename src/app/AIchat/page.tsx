@@ -4,10 +4,12 @@ import ChatHistory from "../Components/ChatHistory";
 
 export default function AIchat() {
     return (
-      <div className="min-h-screen flex justify-start">
-       <ChatHistory />
-       <ChatComponent /> 
-      </div>
+      <div>
+        <div className="min-h-screen lg:flex justify-end">
+          <ChatComponent /> 
+          <ChatHistory />
+        </div>
+     </div>
     );
   }
   

@@ -71,7 +71,7 @@ export default function MyHeader() {
           </Link>
         ))}
       </div>
-      <div className="hidden lg:flex items-center space-x-1 pr-20">
+      <div className="hidden lg:flex items-center space-x-1 pr-20 md:p-0">
         <Link href="/profile">
           <div onClick={(e) => handleClick(e, "/profile")} className="text-sisal-900 hover:bg-sisal-400 hover:text-white rounded-lg px-4 py-2 text-lg font-normal cursor-pointer">
             會員中心

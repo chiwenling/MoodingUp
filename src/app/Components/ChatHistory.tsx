@@ -11,6 +11,7 @@ import Image from "next/image";
 export default function ChatHistory(){
     //讀取目前登入狀態
     const user = useSelector(selectCurrentUser);
+    const [message, setMessage] = useState("");
     const [chatHistory, setChatHistory]= useState<{
         id:string;
         message:string;
@@ -29,7 +30,10 @@ export default function ChatHistory(){
     async function deleteRecord(id:string){
         try {
           await deleteDoc(doc(db, "chatHistory", id));
-          alert("已刪除重點小卡資料");
+          setMessage("刪除囉");
+          setTimeout(() => {
+            setMessage("");
+          }, 1000);
         } catch (error) {
           console.error("刪除錯誤", error);
         }
@@ -57,16 +61,19 @@ export default function ChatHistory(){
 
 
     return(
-        <div className="hidden lg:block m-5 tracking-wider lg:w-1/2 bg-white rounded-lg border-2 border-sisal-500">
-            <div className="p-5 border-b border-gray-300 flex justify-center items-center bg-sisal-600 text-white rounded">
+        <div className="lg:block m-5 tracking-wider lg:w-1/2 bg-white rounded-lg border-2 border-sisal-500">
+            <div className="mb-10 p-5 border-b border-gray-300 flex justify-center items-center bg-sisal-600 text-white rounded">
                 <div className="text-base lg:text-lg font-normal pl-4">重點紀錄收集卡</div>
             </div>
+            <div className="p-2 text-base font-light text-center text-sisal-500 rounded-lg " role="alert">
+                <span className="font-medium">{message}</span>
+            </div>
         
-            <div className="">
+            <div>
                 {chatHistory.length >0 ?(
                     chatHistory.map((history) => (
                         <div key={history.id} >
-                            <div className="m-2 group h-44 bg-transparent rounded-md perspective-1000">
+                            <div className="m-4 group h-44 bg-transparent rounded-md perspective-1000">
                                 <div className="relative w-full h-full text-center transition-transform duration-400 transform-style-3d group-hover:rotate-y-180">
                                     <div className="absolute w-full h-full bg-sisal-200 text-black rounded-lg">
                                         <div className="pt-10 text-lg font-semibold">{history.time}</div> 
@@ -81,7 +88,7 @@ export default function ChatHistory(){
                                 </div>
                             </div>
                         </div>  
-                ))):( <div>沒有談話記錄</div>)}  
+                ))):( <div className="text-center">沒有談話記錄</div>)}  
             </div>  
         </div>
     );
