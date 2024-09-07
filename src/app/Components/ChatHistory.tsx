@@ -57,8 +57,8 @@ export default function ChatHistory(){
 
 
     return(
-        <div className="hidden lg:block m-5 tracking-wider lg:w-1/2 bg-white rounded-lg border border-sisal-500">
-            <div className="p-4 border-b border-gray-300 flex justify-between items-center bg-sisal-600 text-white rounded-lg">
+        <div className="hidden lg:block m-5 tracking-wider lg:w-1/2 bg-white rounded-lg border-2 border-sisal-500">
+            <div className="p-5 border-b border-gray-300 flex justify-center items-center bg-sisal-600 text-white rounded">
                 <div className="text-lg font-normal pl-4">重點紀錄收集卡</div>
             </div>
         
