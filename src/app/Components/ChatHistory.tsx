@@ -59,10 +59,10 @@ export default function ChatHistory(){
     return(
         <div className="hidden lg:block m-5 tracking-wider lg:w-1/2 bg-white rounded-lg border-2 border-sisal-500">
             <div className="p-5 border-b border-gray-300 flex justify-center items-center bg-sisal-600 text-white rounded">
-                <div className="text-lg font-normal pl-4">重點紀錄收集卡</div>
+                <div className="text-base lg:text-lg font-normal pl-4">重點紀錄收集卡</div>
             </div>
         
-            <div className="lg:block lg:m-2 overflow-y-auto h-screen p-2 mb-9 pb-20">
+            <div className="">
                 {chatHistory.length >0 ?(
                     chatHistory.map((history) => (
                         <div key={history.id} >
