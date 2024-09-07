@@ -69,8 +69,8 @@ const QuizComponent = () => {
                 : "opacity-0 max-h-0 overflow-hidden"
             }`}
           >
-            <div className="mb-6">
-              <h1 className="text-3xl font-normal text-sisal-900 text-center">
+            <div className="mb-10">
+              <h1 className="tracking-wider text-2xl font-normal text-sisal-900 text-center">
                 自我狀態檢測
               </h1>
               <div className="flex justify-center m-3">
@@ -97,10 +97,10 @@ const QuizComponent = () => {
                 <div
                   key={responseIndex}
                   onClick={() => handleOptionSelect(index, response.value)}
-                  className={`p-2 border-2 text-center rounded-xl cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105 ${
-                    userResponses[index] === response.value
-                      ? "bg-sisal-600 text-white border-sisal-300"
-                      : "bg-white text-sisal-700 border-sisal-300 hover:bg-sisal-100"
+                  className={`p-2 border-2 text-center rounded-xl cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105 
+                    ${ userResponses[index] === response.value
+                        ? "bg-sisal-600 text-white border-sisal-300"
+                        : "bg-white text-sisal-700 border-sisal-300 hover:bg-sisal-300"
                   }`}
                 >
                   {response.text}
