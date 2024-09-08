@@ -28,7 +28,7 @@ export default function Booking() {
   }
   
     return (
-        <div className="h-full tracking-wide p-6 mb-8">
+        <div className="min-h-screen tracking-wide p-6 mb-8">
         <Scorecard  />
         <div className="min-w-[320px] w-full flex flex-col lg:flex-row justify-center items-center lg:text-base text-white space-y-10 lg:space-y-0 lg:space-x-10">
           {/* AI區 */}

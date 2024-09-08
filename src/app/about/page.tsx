@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Aboutpage() {
   return (
-    <div className="bg-white py-16 px-10">
+    <div className="min-h-screen bg-white py-100 px-10">
       <div className="container mx-auto flex px-15 py-24 md:flex-row flex-col items-center">
         <div className="flex justify-around m-2 lg:max-w-lg lg:w-full md:w-1/2 w-1/2">
           <Image src="/heart.png" width={300} height={300} className="rounded-lg shadow-lg" alt="MoodingUp" />

@@ -4,7 +4,7 @@ import Step from "./Components/Step"
 
 export default function Home() {
   return (
-    <div>    
+    <div className="min-h-screen">    
       <Step /> 
       <Welcome />
     </div> 

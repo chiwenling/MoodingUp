@@ -19,7 +19,7 @@ export default function Welcome() {
   }
 
   return (
-    <div className="bg-sisal-100 py-16">
+    <div className="min-h-screen bg-sisal-100 py-16">
       <div className="mx-auto max-w-6xl py-10 px-8">
         <div className="relative isolate overflow-hidden bg-sisal-600 shadow-2xl rounded-3xl flex lg:px-24 px-10 py-16 justify-between items-center">
           <div className="tracking-wider max-w-md text-center lg:text-left lg:flex-auto">
