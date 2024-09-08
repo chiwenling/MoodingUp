@@ -102,7 +102,7 @@ export default function ChatComponent() {
         </div>
       </Link>
 
-      <div className="sm:ml-10 lg:w-[1000px] md:w-[800px] sm:w-[500px] tracking-wide p-4">
+      <div className="lg:ml-10 sm:ml-3 lg:w-[1000px] md:w-[800px] sm:min-w-[300px] tracking-wide p-4">
         <div className="bg-white rounded-lg shadow-xl p-4">
             <div className="m-3">
               <div className="flex mb-3 text-sisal-900">開啟對話時間：{currentTime}</div>
