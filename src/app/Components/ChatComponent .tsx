@@ -130,7 +130,7 @@ export default function ChatComponent() {
 
           <div className="mt-4 flex items-center">
             <input type="text" placeholder="請放心打下你想詢問的問題喔～"
-              className="flex-1 py-2 px-3 rounded-full bg-gray-100 focus:outline-none text-base"
+              className="flex-1 py-2 px-3 rounded-full bg-gray-100 focus:outline-none text-sm"
               value={inputValue} onChange={(e) => setInputValue(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && !loading && !chatEnd && handleSend(inputValue)}
               disabled={loading}
@@ -141,7 +141,7 @@ export default function ChatComponent() {
               onClick={()=>handleSend(inputValue)}
               disabled={loading||chatEnd}
             >
-              {loading ? "請稍等..." : "送出"}
+              {loading ? "請稍等..." : "送  出"}
             </button>
             <button className={chatEnd? "bg-red-700 text-white px-4 py-2 rounded-full ml-3 hover:bg-red-500":"bg-sisal-700 text-white px-4 py-2 rounded-full ml-3 hover:bg-sisal-500"}
               onClick={chatEnd? saveHistory:stopTalk}

@@ -44,7 +44,7 @@ export default function Record(){
             await updateDoc(availableTimeDocRef, { openTime: updatedOpenTime });
           });
       
-          alert("預約已取消並恢復可用時間");
+          alert("預約已取消囉");
         } catch (error) {
           console.error("刪除錯誤", error);
         }

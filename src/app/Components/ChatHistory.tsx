@@ -63,7 +63,7 @@ export default function ChatHistory(){
     return(
         <div className="min-w-[300px] lg:block m-5 tracking-wider lg:w-1/2 bg-white rounded-lg border-2 border-sisal-500">
             <div className="mb-10 p-5 border-b border-gray-300 flex justify-center items-center bg-sisal-600 text-white rounded">
-                <div className="text-base lg:text-lg font-normal pl-4">重點紀錄收集卡</div>
+                <div className="text-base lg:text-lg font-normal pl-4 text-center">重點紀錄收集卡</div>
             </div>
             <div className="p-2 text-base font-light text-center text-sisal-500 rounded-lg " role="alert">
                 <span className="font-medium">{message}</span>
@@ -88,7 +88,7 @@ export default function ChatHistory(){
                                 </div>
                             </div>
                         </div>  
-                ))):( <div className="text-center">沒有談話記錄</div>)}  
+                ))):( <div className="text-center p-10">目前沒有談話記錄</div>)}  
             </div>  
         </div>
     );
