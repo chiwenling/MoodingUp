@@ -1,7 +1,7 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectCurrentUser, userLoggedOut, selectAuthLoading } from "../../../lib/features/auth/authSlice";
+import { useSelector} from "react-redux";
+import { selectCurrentUser} from "../../../lib/features/auth/authSlice";
 import { doc, setDoc, getDoc} from 'firebase/firestore';
 import { db } from '../../../firebase';
 
@@ -37,12 +37,6 @@ export const ScoreProvider = ({ children }: { children: React.ReactNode }) => {
     fetchScore();
   }, [user]);
   
-  // useEffect(() => {
-  //   const savedScore = localStorage.getItem("score");
-  //   if (savedScore) {
-  //     setScore(Number(savedScore)); 
-  //   }
-  // }, []);
 
   const setScore = (newScore: number) => {
     setScoreState(newScore);
