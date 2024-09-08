@@ -43,15 +43,15 @@ export default function Register() {
 
   return(
     <div>
-    <div className="bg-no-repeat bg-cover bg-center relative">
+    <div className="min-h-screen bg-no-repeat bg-cover bg-center relative">
       <div className="absolute bg-gradient-to-t from-gray-500 to-yellow-400 opacity-80 inset-0 z-0"></div>
       <div className="flex mx-auto p-10 justify-center"> 
           <div className="hidden lg:flex flex-col z-10 mt-10">
             <p className="text-center italic tracking-widest">“Maybe this is what happens when you grow up.</p>
             <p className="text-center italic tracking-widest"> You feel less joy.” — Joy</p>
-            <Image src="/signup_bg.png" alt="會員註冊頁面" width={600} height={600} className=""/>
+            <Image src="/signup_bg.png" alt="會員註冊頁面" width={600} height={600}/>
           </div>
-        <form onSubmit={handleSubmit} className="mt-12 z-1" action="#">
+        <form onSubmit={handleSubmit} className="mt-12 z-1">
           <div className="flex justify-center self-center">
             <div className="relative h-[580px] lg:w-[400px] p-10 bg-white mx-3 rounded-2xl">
               <div className="mb-6">

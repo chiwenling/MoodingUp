@@ -48,8 +48,8 @@ export default function Login() {
   };
 
   return(
-    <div className="min-h-screen">
-    <div className="bg-no-repeat bg-cover bg-center relative">
+    <div>
+    <div className="min-h-screen bg-no-repeat bg-cover bg-center relative">
       <div className="absolute bg-gradient-to-t from-gray-500 to-yellow-400 opacity-80 inset-0 z-0"></div>
       <div className="flex mx-auto p-10 justify-center"> 
         <div className="p-14 z-10 hidden lg:flex lg:flex-col text-white">
