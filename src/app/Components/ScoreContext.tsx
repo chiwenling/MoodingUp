@@ -2,6 +2,8 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCurrentUser, userLoggedOut, selectAuthLoading } from "../../../lib/features/auth/authSlice";
+import { doc, setDoc, getDoc} from 'firebase/firestore';
+import { db } from '../../../firebase';
 
 interface ScoreContextType {
   score: number;
@@ -14,18 +16,50 @@ const ScoreContext = createContext<ScoreContextType | undefined>(undefined);
 export const ScoreProvider = ({ children }: { children: React.ReactNode }) => {
   const [score, setScoreState] = useState<number>(0);
   const user = useSelector(selectCurrentUser);
+  
   useEffect(() => {
-    let savedScore = localStorage.getItem("score");
-    if (savedScore) {
-      setScoreState(Number(savedScore)); 
-    }if(!user){
-      localStorage.removeItem("score");;
-    }
-  }, []);
+    const fetchScore = async () => {
+      if (user) {
+        try {
+          const docRef = doc(db, "scores", user.uid);
+          const docSnap = await getDoc(docRef);
+          if(docSnap.exists()) {
+            setScoreState(docSnap.data().score)
+          } else {
+            console.log("還沒分數");
+          }
+        } catch (error) {
+          console.error("fetch有問題:", error);
+        }
+      }
+    };
+  
+    fetchScore();
+  }, [user]);
+  
+  // useEffect(() => {
+  //   const savedScore = localStorage.getItem("score");
+  //   if (savedScore) {
+  //     setScore(Number(savedScore)); 
+  //   }
+  // }, []);
 
   const setScore = (newScore: number) => {
     setScoreState(newScore);
-    localStorage.setItem("score", newScore.toString());
+    updateScore(newScore);
+    async function updateScore(newScore:number) {
+        if(user){
+        try {
+          await setDoc(doc(db, "scores",user.uid), {
+            email: user.email,
+            score: newScore,
+          });
+          console.log("存了分數");
+        } catch (error) {
+          console.error('Error saving data to Firestore:', error);
+        }  
+      }
+    };
   };
 
   return (

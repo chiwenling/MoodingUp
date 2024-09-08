@@ -28,9 +28,10 @@ export default function Admin() {
           try {
             const docRef = doc(db, "users", user.uid);
             const docSnap = await getDoc(docRef);
-
+            
             if(docSnap.exists()) {
               const isAdmin = docSnap.data().isAdmin;
+
               console.log("是不是輔導員",isAdmin);
               setisAdmin(isAdmin);
               setProfile(docSnap.data() as {
@@ -53,14 +54,27 @@ export default function Admin() {
       };
     
       fetchProfile();
-    }, [user]);
-    
+    }, [user]);    
+
     useEffect(() => {
-      const savedScore = localStorage.getItem("score");
-      if (savedScore) {
-        setScore(Number(savedScore)); 
-      }
-    }, []);
+      const fetchScore = async () => {
+        if (user) {
+          try {
+            const docRef = doc(db, "scores", user.uid);
+            const docSnap = await getDoc(docRef);
+            if(docSnap.exists()) {
+              setScore(docSnap.data().score)
+            } else {
+              console.log("還沒分數");
+            }
+          } catch (error) {
+            console.error("fetch有問題:", error);
+          }
+        }
+      };
+  
+    fetchScore();
+  }, [user]);
 
     // 新的資料
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -84,6 +98,9 @@ export default function Admin() {
       }
     };
 
+    if(loading){
+      null;
+    }
 
     return (
       <div className="tracking-wide">

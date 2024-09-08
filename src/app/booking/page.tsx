@@ -34,8 +34,7 @@ export default function Booking() {
           {/* AI區 */}
           <div className="sm:max-w-md sm:max-w-sm bg-gradient-to-b from-orange-200 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
             <div className="w-[150px] h-[150px] mx-auto mt-5 overflow-hidden rounded-full shadow-lg">
-              <Image src="/a01.gif" width={150} height={150} className="bg-sisal-100 w-full h-full object-cover animate-pulse" alt="AI聊天圖片"
-              />
+              <Image src="/a01.gif" width={150} height={150} className="bg-sisal-100 w-full h-full object-cover animate-pulse" alt="AI聊天圖片" unoptimized />
             </div>
             <div className="p-8 text-center">
               <h2 className="mb-3 text-2xl font-medium tracking-wider text-black">
@@ -51,7 +50,7 @@ export default function Booking() {
           {/* 真人區 */}
           <div className="max-w-md sm:max-w-sm bg-gradient-to-b from-pink-300 via-white to-white border border-sisal-200 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-400 ease-in-out transform hover:scale-105">
             <div className="w-[150px] h-[150px] mx-auto mt-5 overflow-hidden rounded-full shadow-lg">
-              <Image src="/soft.gif" width={150} height={150} className="bg-sisal-100 w-full h-full object-cover animate-pulse" alt="真人輔導圖片" />
+              <Image src="/soft.gif" width={150} height={150} className="bg-sisal-100 w-full h-full object-cover animate-pulse" alt="真人輔導圖片" unoptimized/>
             </div>
             <div className="p-8 text-center">
               <h2 className="mb-3 text-2xl font-medium tracking-wider text-black">
