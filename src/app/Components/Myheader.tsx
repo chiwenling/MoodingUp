@@ -55,7 +55,7 @@ export default function MyHeader() {
   
 
   return (
-    <div className="bg-sisal-300 h-20 flex items-center justify-between px-4 lg:px-20 relative z-10">
+    <div className="min-w-[400px] w-full bg-sisal-300 h-20 flex items-center justify-between px-4 lg:px-20 relative z-10">
       <Link href="/">
         <div className="flex items-center w-14 h-14">
           <Image src="/heart.png" alt="logo" width={60} height={48} className="rounded-full" />

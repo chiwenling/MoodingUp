@@ -20,7 +20,7 @@ const ScoreCard = () => {
 
   return (
     <div>
-        <div className="m-8 flex flex-row items-center justify-between w-full p-10 bg-gradient-to-r from-sisal-100 to-sisal-200 rounded-xl shadow-xl max-w-4xl mx-auto transform hover:scale-110 transition-transform duration-300 ease-in-out space-x-10">    
+        <div className="min-w-[320px] w-full m-8 flex flex-row items-center justify-between p-10 bg-gradient-to-r from-sisal-100 to-sisal-200 rounded-xl shadow-xl max-w-4xl mx-auto transform hover:scale-110 transition-transform duration-300 ease-in-out space-x-10">    
             <div className="flex flex-col justify-center m-1 p-1">
                 <div className="text-sm text-sisal-600 font-medium mb-4">根據自我效能表總分40分</div>
                 <div className="text-2xl font-normal text-sisal-900 mb-2 tracking-wide">心情檢測分數 : {score}</div>
