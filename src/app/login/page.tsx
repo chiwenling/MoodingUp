@@ -6,14 +6,13 @@ import Link from "next/link";
 import Image from 'next/image';
 import { useRouter } from "next/navigation";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "../../../firebase";
 import GoogleAuth from "../Components/GoogleAuth"
 import { useDispatch } from 'react-redux';
 import { userLoggedIn } from '../../../lib/features/auth/authSlice';
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("user@test.com");
+  const [password, setPassword] = useState("123456");
   const [error, setError] = useState("");
   const [loginMessage, setLoginMessage]=useState("");
   const router = useRouter();
