@@ -31,7 +31,7 @@ export default function Team() {
       }, []);
 
     return (
-        <div className="tracking-wider bg-sisal-200">
+        <div className="min-w-[360px] tracking-wider bg-sisal-200">
           <div className="py-12 px-6 mx-auto max-w-screen-xl lg:py-16 lg:px-8">
             <div className="mx-auto max-w-screen-sm text-center mb-12 lg:mb-20">
               <div className="mb-6 text-2xl font-bold text-sisal-900">輔導員介紹</div>
