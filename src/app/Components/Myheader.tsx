@@ -11,7 +11,7 @@ import { selectCurrentUser, userLoggedOut, selectAuthLoading } from "../../../li
 const navigation = [
   { name: "關於", href: "/about", current: false },
   { name: "心情小測", href: "/test", current: false },
-  { name: "預約聊天", href: "/booking", current: false },
+  { name: "預約聊天", href: "/booking", current: false }
 ];
 
 function classNames(...classes: (string | undefined | null | false)[]) {
