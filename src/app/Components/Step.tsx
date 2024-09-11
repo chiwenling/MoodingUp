@@ -1,6 +1,6 @@
 export default function Step() {
     return (
-      <ol className="p-10 pb-0 bg-sisal-100 h-auto text-xl font-semibold tracking-wider flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-8 text-sisal-800">
+      <ol className="p-20 pb-20 bg-sisal-200 h-auto text-xl font-semibold tracking-wider flex flex-col lg:flex-row items-center justify-center space-y-4 lg:space-y-0 lg:space-x-8 text-sisal-800">
          <li className="flex items-center space-x-4">
           <span className="text-gray-700">操作步驟</span>
         </li>

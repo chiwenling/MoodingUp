@@ -53,12 +53,13 @@ export default function MyHeader() {
   
 
   return (
-    <div className="min-w-[400px] w-full bg-sisal-300 h-20 flex items-center justify-between px-4 lg:px-20 relative z-10">
+    <div className="fixed top-0 min-w-[400px] w-full bg-sisal-300 min-h-[80px] flex items-center justify-between px-10 lg:px-20 z-50">
       <Link href="/">
-        <div className="flex items-center w-14 h-14">
+        <div className="flex items-center w-14 h-14 ">
           <Image src="/heart.png" alt="logo" width={60} height={48} className="rounded-full" />
         </div>
       </Link>
+
       <div className="hidden lg:flex items-center justify-start ml-10 space-x-3 grow">
         {navigation.map((item) => (
           <Link key={item.name} href={item.href}>
@@ -69,6 +70,7 @@ export default function MyHeader() {
           </Link>
         ))}
       </div>
+
       <div className="hidden lg:flex items-center space-x-1 pr-20 md:p-0">
         <Link href="/profile">
           <div onClick={(e) => handleClick(e, "/profile")} className="text-sisal-900 hover:bg-sisal-400 hover:text-white rounded-lg px-4 py-2 text-lg font-normal cursor-pointer">
@@ -84,6 +86,7 @@ export default function MyHeader() {
           </Link>
         )}
       </div>
+
       <div className="lg:hidden flex items-center">
         <button onClick={OpenMenu} className="text-sisal-900">
           {isMenuOpen ? (

@@ -14,20 +14,21 @@ interface MentorCard{
 
 export default function Team() {
     const [mentorInfo, setMentorInfo]= useState<MentorCard[]>([]);
-        useEffect(() => {
-            const fetchMentors = async () => {
-              try {
-                const querySnapshot = await getDocs(collection(db, "mentors"));
-                const mentorCard = querySnapshot.docs.map((doc) => ({
-                  ...doc.data(),
-                })) as MentorCard[];
-                setMentorInfo(mentorCard); 
-              } catch (error) {
-                console.error("錯誤:", error);
-              }
-            };
-            fetchMentors();
-          }, []);
+    
+    useEffect(() => {
+        const fetchMentors = async () => {
+          try {
+            const querySnapshot = await getDocs(collection(db, "mentors"));
+            const mentorCard = querySnapshot.docs.map((doc) => ({
+              ...doc.data(),
+            })) as MentorCard[];
+            setMentorInfo(mentorCard); 
+          } catch (error) {
+            console.error("錯誤:", error);
+          }
+        };
+        fetchMentors();
+      }, []);
 
     return (
         <div className="tracking-wider bg-sisal-200">
@@ -47,7 +48,7 @@ export default function Team() {
                       <div className="pl-1 text-2xl font-normal text-gray-900">{mentor.name}</div>
                       <div className="flex flex-wrap gap-2">
                         {mentor.skill.map((skill, skillIndex) => (
-                          <div key={skillIndex} className="rounded-full bg-sisal-300 text-sisal-800 px-4 py-2"># {skill}</div>
+                          <div key={skillIndex} className="rounded-full bg-sisal-300 text-sisal-800 px-4 py-2"> {skill}</div>
                         ))}
                       </div>
                       <p className="font-normal text-base text-sisal-500">最高學歷：{mentor.education}</p>
@@ -55,7 +56,7 @@ export default function Team() {
                     </div>
                   </div>
                 ))
-              ) : (<p className="text-gray-500">本平台暫時無輔導員資料</p>)}
+              ) : (<p className="text-gray-500 text-center">本平台暫時無輔導員資料</p>)}
             </div>
           </div>
         </div>
