@@ -12,7 +12,6 @@ const navigation = [
   { name: "關於", href: "/about", current: false },
   { name: "心情小測", href: "/test", current: false },
   { name: "預約聊天", href: "/booking", current: false },
-  { name: "輔導員介紹", href: "/mentors", current: false },
 ];
 
 function classNames(...classes: (string | undefined | null | false)[]) {
@@ -39,7 +38,6 @@ export default function MyHeader() {
   const handleClick = (e: any, href: string) => {
     if ((!user && (href === "/booking" || href === "/profile" || href === "/test"))) {
       e.preventDefault();
-      // alert("請先登入");
       router.push("/login");
     }
   };

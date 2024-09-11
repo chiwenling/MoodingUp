@@ -1,5 +1,6 @@
 import Welcome from "./Components/Welcome"
 import Step from "./Components/Step"
+import Team from "./Components/Team";
 
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
     <div className="min-h-screen">    
       <Step /> 
       <Welcome />
+      <Team />
     </div> 
   );
 }
