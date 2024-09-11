@@ -23,13 +23,13 @@ export default function Welcome() {
       <div className="mx-auto max-w-6xl px-8">
         <div className="relative isolate overflow-hidden bg-sisal-100 shadow-2xl rounded-3xl flex lg:px-24 py-16 justify-between items-center">
           <div className="pr-10 pl-8 tracking-wider max-w-md text-center lg:text-left lg:flex-auto">
-            <h2 className="text-sisal-800 text-[30px] text-start lg:text-4xl font-extrabold">
+            <h2 className="text-[25px] text-sisal-800 text-[30px] text-start lg:text-4xl font-extrabold">
               也許你可以找人聊聊
             </h2>
             <div className="text-base text-start lg:mt-4 text-lg text-sisal-800 leading-relaxed">
-               工作職涯、關係、心情，疑難雜症慢慢聊！
+               職涯、關係、心情，疑難雜症慢慢聊！
             </div>
-            <div className="mt-10  flex items-center justify-center lg:justify-start gap-x-6">
+            <div className="mt-10 flex items-center lg:justify-start lg: gap-x-6">
               <Link href="/test" onClick={(e) => handleClick(e,"/test")}>
                 <div className="cursor-pointer rounded-md bg-white px-3 py-2 text-m font-normal text-gray-900 shadow-lg hover:bg-sisal-900 hover:text-sisal-200">
                   心情小測
