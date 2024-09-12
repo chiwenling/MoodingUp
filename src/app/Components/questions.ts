@@ -11,7 +11,7 @@ interface Question {
 
 const Questions: Question[] = [
     {
-        text: "如果我盡力去做的話，我總是能夠解決難題的。",
+        text: "如果我盡力去解決問題，我總是能夠解決難題的。",
         responses: [
             { text: "完成不正確",value: 1},
             { text: "尚算正確", value: 2 },
@@ -20,7 +20,7 @@ const Questions: Question[] = [
         ]
     },
     {
-        text: "即使別人反對我，我仍有辦法取得我所要的。",
+        text: "即使別人反對我的想法，我仍有辦法取得我所要的。",
         responses: [
             { text: "完成不正確",value: 1},
             { text: "尚算正確", value: 2 },

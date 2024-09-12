@@ -19,7 +19,7 @@ export default function Home() {
   },[user,router]);
 
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen pt-20'>
       <Quiz />
     </div>
     

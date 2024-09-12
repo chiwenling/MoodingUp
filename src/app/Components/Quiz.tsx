@@ -73,29 +73,30 @@ const QuizComponent = () => {
             }`}
           >
             <div className="mb-10">
-              <h1 className="tracking-wider text-2xl font-normal text-sisal-900 text-center">
+              <h1 className="tracking-wider text-2xl font-normal text-sisal-900 text-center pb-4">
                 自我狀態檢測
               </h1>
+              <div className="pb-5 text-center text-light">請選出最符合現況的選項</div>
               <div className="flex justify-center m-3">
-                <div className="w-1/4 text-center text-base text-sisal-800 bg-sisal-300 py-3 rounded-lg shadow-md">
+                <div className="w-1/3 text-center text-base text-sisal-800 bg-sisal-300 py-3 rounded-lg shadow-md">
                   {`完成 ${index + 1} / ${Questions.length}題`}
                 </div>
               </div>
-              <div className="flex justify-center items-center my-6">
-                <div className="flex items-center w-full mx-4 bg-gray-400 rounded-full overflow-hidden h-2">
+              <div className="flex justify-center items-center my-10">
+                <div className="flex items-center w-1/3 mx-4 bg-gray-400 rounded-full overflow-hidden h-2">
                   <div style={{ width: `${((index + 1) / Questions.length) * 100}%` }} className="bg-yellow-500 h-full rounded-full transition-width duration-500 ease-in-out" />
                 </div>
               </div>
             </div>
 
-            <h2 className="text-xl text-center font-light mb-6 text-gray-900">
+            <h2 className="text-xl text-center font-normal mb-6 text-gray-900">
               {question.text}
             </h2>
 
-            <div className="space-y-5 ">
+            <div className="space-y-5 w-1/3 mx-auto">
               {question.responses.map((response, responseIndex) => (
                 <div key={responseIndex} onClick={() => handleOptionSelect(index, response.value)}
-                  className={`p-2 border-2 text-center rounded-xl cursor-pointer transition-transform duration-300 ease-in-out transform hover:scale-105 
+                  className={`p-2 border-2 text-center rounded-xl cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 
                     ${ userResponses[index] === response.value
                         ? "bg-sisal-600 text-white border-sisal-300"
                         : "bg-white text-sisal-700 border-sisal-300 hover:bg-sisal-300"
