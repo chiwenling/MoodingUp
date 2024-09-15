@@ -19,9 +19,9 @@ export default function Welcome() {
   }
 
   return (
-    <div className="pt-10 mt-20 min-w-[360px] bg-sisal-200">
+    <div className="pt-20 mt-18 min-w-[360px] bg-sisal-200">
       <div className="mx-auto max-w-6xl px-8">
-        <div className="relative isolate overflow-hidden bg-sisal-100 shadow-2xl rounded-3xl flex lg:px-24 py-16 justify-between items-center">
+        <div className="relative isolate overflow-hidden bg-sisal-100 shadow-2xl rounded-3xl flex lg:px-24 py-5 justify-between items-center">
           <div className="pr-10 pl-8 tracking-wider max-w-md text-center lg:text-left lg:flex-auto">
             <h2 className="text-[25px] text-sisal-800 text-[30px] text-start lg:text-4xl font-extrabold">
               也許你可以找人聊聊
