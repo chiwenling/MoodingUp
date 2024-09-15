@@ -30,7 +30,7 @@ export default function Register() {
 
     try {
       await createUserWithEmailAndPassword(getAuth(app), email, password);
-      router.push("/login");
+      router.push("/profile");
     } catch (e) {
       const firebaseErrorCode = (e as { code: string }).code;
       const friendlyMessage =
