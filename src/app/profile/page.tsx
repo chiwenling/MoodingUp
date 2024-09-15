@@ -23,7 +23,7 @@ export default function Profile() {
   },[user,router]); 
 
   return (
-    <div>
+    <div className="mt-20">
       <ApplyForAdmin /> 
       <Admin />
       <Record />
