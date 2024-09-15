@@ -16,14 +16,6 @@ const QuizComponent = () => {
   const unanswered = userResponses[questionIndex] == null;
   const buttonLabel = isLast ? "結算分數" : "下一題";
 
-  useEffect(() => {
-    if (questionRefs.current[questionIndex]) {
-        questionRefs.current[questionIndex]?.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-  }, [questionIndex]);
-
   const handleOptionSelect = (questionIndex: number, responseValue: number) => {
     const newResponses = [...userResponses];
     newResponses[questionIndex] = responseValue; 
@@ -58,7 +50,7 @@ const QuizComponent = () => {
   
 
   return (
-    <section className="container mx-auto my-10 p-8 bg-gradient-to-b from-sisal-100 to-orange-200 rounded-2xl shadow-2xl max-w-3xl transform hover:scale-105 transition-transform duration-500 ease-in-out hover:shadow-lg">
+    <section className="container mx-auto my-20 p-20 pt-10 mt-22 bg-gradient-to-b from-sisal-100 to-orange-200 rounded-2xl shadow-2xl max-w-2xl">
       <div className="space-y-1">
         {Questions.map((question, index) => (
           <div key={index} id={`question-${index}`}
@@ -70,18 +62,19 @@ const QuizComponent = () => {
               index === questionIndex
                 ? "opacity-100 max-h-screen"
                 : "opacity-0 max-h-0 overflow-hidden"
-            }`}
-          >
+            }`}>
             <div className="mb-10">
               <h1 className="tracking-wider text-2xl font-normal text-sisal-900 text-center pb-4">
                 自我狀態檢測
               </h1>
               <div className="pb-5 text-center text-light">請選出最符合現況的選項</div>
+            
               <div className="flex justify-center m-3">
                 <div className="w-1/3 text-center text-base text-sisal-800 bg-sisal-300 py-3 rounded-lg shadow-md">
                   {`完成 ${index + 1} / ${Questions.length}題`}
                 </div>
               </div>
+              
               <div className="flex justify-center items-center my-10">
                 <div className="flex items-center w-1/3 mx-4 bg-gray-400 rounded-full overflow-hidden h-2">
                   <div style={{ width: `${((index + 1) / Questions.length) * 100}%` }} className="bg-yellow-500 h-full rounded-full transition-width duration-500 ease-in-out" />
@@ -89,22 +82,24 @@ const QuizComponent = () => {
               </div>
             </div>
 
-            <h2 className="text-xl text-center font-normal mb-6 text-gray-900">
-              {question.text}
-            </h2>
+            <div className="bg-orange-100 p-5 rounded-lg shadow-lg">
+              <h2 className="text-lg text-center font-normal mb-6 text-gray-900">
+                Q : {question.text}
+              </h2>
 
-            <div className="space-y-5 w-1/3 mx-auto">
-              {question.responses.map((response, responseIndex) => (
-                <div key={responseIndex} onClick={() => handleOptionSelect(index, response.value)}
-                  className={`p-2 border-2 text-center rounded-xl cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 
-                    ${ userResponses[index] === response.value
-                        ? "bg-sisal-600 text-white border-sisal-300"
-                        : "bg-white text-sisal-700 border-sisal-300 hover:bg-sisal-300"
-                  }`}
-                >
-                  {response.text}
-                </div>
-              ))}
+              <div className="space-y-5 w-1/2 mx-auto">
+                {question.responses.map((response, responseIndex) => (
+                  <div key={responseIndex} onClick={() => handleOptionSelect(index, response.value)}
+                    className={`p-2 border-2 text-center rounded-xl cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 
+                      ${ userResponses[index] === response.value
+                          ? "bg-sisal-600 text-white border-sisal-300"
+                          : "bg-white text-sisal-700 border-sisal-300 hover:bg-sisal-300"
+                    }`}
+                  >
+                    {response.text}
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="mt-10 flex justify-between">
