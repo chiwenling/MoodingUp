@@ -109,8 +109,8 @@ export default function MentorInfo(){
   
 
     return(
-        <div className="transition-colors duration-300">
-          <div className="container mx-auto p-4 bg-white shadow rounded-lg p-6">
+        <div className="transition-colors duration-300 mt-20">
+          <div className="container mx-auto p-4 bg-white shadow rounded-lg p-6 mt-20">
             <div className="tracking-wider">
               <div className="text-xl font-semibold mb-4 text-gray-900">輔導員建檔資料</div>
               <p className="text-gray-600 mb-6">將公開顯示於介紹頁</p>
@@ -122,7 +122,7 @@ export default function MentorInfo(){
 
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="bg-sisal-100  border text-gray rounded-lg px-8 py-2 whitespace-nowrap">領域分類</div>
-                  <select name="gender" value={mentorProfile.field} onChange={handleChange} className="border p-2 w-full rounded-lg focus:outline-none focus:border-sisal-300" required>
+                  <select name="gender" value={mentorProfile.field} onChange={handleChange} className="border p-2 pl-1 w-full rounded-lg focus:outline-none focus:border-sisal-300" required>
                       <option value="" disabled>請選擇輔導領域</option>
                       <option value="relationship">兩性感情</option>
                       <option value="friendship">人際關係</option>
@@ -161,7 +161,7 @@ export default function MentorInfo(){
 
                 <div className="flex items-cneter space-x-4 ">
                   <div className="bg-sisal-100  border text-gray rounded-lg px-12 py-10 whitespace-nowrap">簡歷</div>
-                  <textarea name="introduction" value={mentorProfile.introduction} onChange={handleChange}  placeholder="簡介與特殊經驗，限50字" className="pb-10 pl-1 border w-full h-[100px] rounded-lg focus:outline-none focus:border-sisal-300" />
+                  <textarea name="introduction" value={mentorProfile.introduction} onChange={handleChange}  placeholder="簡介與特殊經驗，限50字" className="p-2 border w-full h-[100px] rounded-lg focus:outline-none focus:border-sisal-300" />
                 </div>
                 <div className="text-end mb-4 text-green-400">
                     {mentorProfile.introduction.length} 
