@@ -3,6 +3,9 @@ MoodingUp 幫助有需要的人可以隨時提出自己的需求，可以透過 
 
 ![Project Screenshot](public/p1.png)  
 
+# 技術說明
+![Project Screenshot](public/p2.png) 
+
 # 使用者操作主要功能
 1. 心情檢測  
 2. AI 初聊  
