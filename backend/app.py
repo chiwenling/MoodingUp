@@ -14,12 +14,17 @@ app.add_middleware(
     allow_headers=["*"],  
 )
 
-load_dotenv(dotenv_path=".env.local")
+env_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), ".env.local")
+print(f"Loading .env from: {env_path}")
+load_dotenv(dotenv_path=env_path)
 api_key = os.getenv("CHATGPT_API_TOKEN")
+
+
 if not api_key:
     print("API key not found.")
 else:
     openai.api_key = api_key
+    print("ok，api設定完成")
 
 class MessageRequest(BaseModel):
     prompt: str
@@ -66,4 +71,3 @@ async def chat(request: MessageRequest):
     except Exception as e:
         print(f"why Error: {e}")
         raise HTTPException(status_code=500, detail="Internal Server Error")
-
