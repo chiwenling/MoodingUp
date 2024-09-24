@@ -14,7 +14,7 @@ export default function Aboutpage() {
           <p className="mb-5 text-justify  text-lg text-gray-700">
             我們希望提供一個陪伴平台，幫助有需要的人可以隨時提出自己的需求，您可以透過 AI 陪伴員獲得初步的輔導，聊聊目前狀況，也可以預約輔導員，獲得線上資源和陪伴切入點。
           </p>
-          <Button href="mentors" text="認識我們的輔導員，ＧＯ！" bg="bg-sisal-600" />
+          <Button href="/" text="認識我們的輔導員，ＧＯ！" bg="bg-sisal-600" />
         </div>
       </div>
     </div>
